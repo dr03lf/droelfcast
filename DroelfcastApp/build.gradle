@@ -1,0 +1,40 @@
+buildscript {
+    dependencies {
+        classpath rootProject.ext.androidPlugin
+    }
+}
+
+apply plugin: 'com.android.application'
+
+dependencies {
+    compile rootProject.ext.supportv7
+    compile project(rootProject.ext.rxAndroid)
+    compile project(':Feedparser')
+}
+
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    defaultConfig {
+        applicationId "at.droelf.droelfcast"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+

@@ -1,0 +1,3 @@
+[submodule "NotRxAndroid"]
+	path = NotRxAndroid
+	url = git@github.com:JakeWharton/NotRxAndroid.git
