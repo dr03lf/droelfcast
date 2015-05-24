@@ -1,1 +1,1 @@
-include ':DroelfcastApp', ':Feedparser', ':NotRxAndroid:rxandroid'
+include ':DroelfcastApp', ':Feedparser', ':NotRxAndroid:rxandroid', ':Common'

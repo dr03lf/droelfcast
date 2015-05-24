@@ -9,6 +9,7 @@ apply plugin: 'com.android.application'
 dependencies {
     compile rootProject.ext.supportv7
     compile project(rootProject.ext.rxAndroid)
+    compile project(':Common')
     compile project(':Feedparser')
 }
 
@@ -35,6 +36,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    packagingOptions{
+        exclude 'META-INF/services/com.fasterxml.jackson.core.JsonFactory'
+        exclude 'META-INF/services/com.fasterxml.jackson.core.ObjectCodec'
     }
 }
 
