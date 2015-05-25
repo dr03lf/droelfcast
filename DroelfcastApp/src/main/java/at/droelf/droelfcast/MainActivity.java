@@ -86,6 +86,7 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
         if(scope == null){
 
             final FeedScreen.Component build = DaggerFeedScreen_Component.builder().feedModule(new FeedModule()).build();
+
             scope = MortarScope.buildChild(getApplicationContext())
                     .withService(DaggerService.SERVICE_NAME, build)
                     .withService(BundleServiceRunner.SERVICE_NAME, new BundleServiceRunner())

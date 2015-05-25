@@ -63,4 +63,8 @@ ext {
 
     // Butterknife
     butterknife = 'com.jakewharton:butterknife:6.1.0'
+
+    //auto parcel
+    autoParcel = 'com.github.frankiesardo:auto-parcel:0.3'
+    autoParcelProcessor = 'com.github.frankiesardo:auto-parcel-processor:0.3'
 }

@@ -11,11 +11,14 @@ import javax.inject.Singleton;
 
 import at.droelf.droelfcast.R;
 import at.droelf.droelfcast.common.Logger;
+import at.droelf.droelfcast.episode.EpisodeScreen;
 import at.droelf.droelfcast.feedparser.FeedParserService;
 import at.droelf.droelfcast.feedparser.model.Feed;
+import at.droelf.droelfcast.feedparser.model.item.Item;
 import at.droelf.droelfcast.screen.Layout;
 import dagger.Module;
 import dagger.Provides;
+import flow.Flow;
 import flow.path.Path;
 import mortar.ViewPresenter;
 import rx.Scheduler;
@@ -44,6 +47,12 @@ public class FeedScreen extends Path{
             Timber.d("Feed Screen constructor");
         }
 
+
+        public void onEpisodeSelected(Item item){
+            Flow.get(getView()).set(new EpisodeScreen(item));
+        }
+
+
         @Override
         protected void onLoad(final Bundle savedInstanceState) {
             Timber.d("~Lifecycle~ [activity] Presenter [method] onLoad [params] [savedInstanceState]");
@@ -62,16 +71,17 @@ public class FeedScreen extends Path{
                 .subscribe(new Subscriber<Feed>() {
                     @Override
                     public void onCompleted() {
-
+                        Timber.d("onCompleted Feed");
                     }
 
                     @Override
                     public void onError(final Throwable e) {
-
+                        Timber.d("onError Feed");
                     }
 
                     @Override
                     public void onNext(final Feed feed) {
+                        Timber.d("onNext Feed");
                         view.initListView(feed.getChannel().getItems());
                         view.setTitle(feed.getChannel().getTitle());
                     }
