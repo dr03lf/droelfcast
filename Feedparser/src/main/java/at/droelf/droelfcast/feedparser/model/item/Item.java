@@ -90,4 +90,72 @@ public class Item {
     @ElementList(required = false, entry = "chapters")
     private List<Chapter> chapters;
 
+
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public Enclosure getEnclosure() {
+        return enclosure;
+    }
+
+    public Guid getGuid() {
+        return guid;
+    }
+
+    public String getPubDate() {
+        return pubDate;
+    }
+
+    public Source getSource() {
+        return source;
+    }
+
+    public String getBlock() {
+        return block;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public String getExplicit() {
+        return explicit;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public List<Chapter> getChapters() {
+        return chapters;
+    }
 }

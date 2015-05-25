@@ -20,7 +20,12 @@ dependencies {
     provided rootProject.ext.javaxAnnotation
 
     compile rootProject.ext.mortar
+    compile rootProject.ext.flow
+    compile rootProject.ext.flowPath
 
+    compile rootProject.ext.gson
+
+    compile rootProject.ext.butterknife
 }
 
 

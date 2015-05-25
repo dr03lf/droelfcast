@@ -15,4 +15,11 @@ public class Feed {
     private String version;
 
 
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public String getVersion() {
+        return version;
+    }
 }

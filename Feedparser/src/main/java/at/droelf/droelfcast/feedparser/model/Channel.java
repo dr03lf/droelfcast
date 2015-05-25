@@ -138,4 +138,112 @@ public class Channel {
     @Element(required = false)
     private String summary;
 
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public String getCopyright() {
+        return copyright;
+    }
+
+    public String getManagingEditor() {
+        return managingEditor;
+    }
+
+    public String getWebMaster() {
+        return webMaster;
+    }
+
+    public String getPubDate() {
+        return pubDate;
+    }
+
+    public String getLastBuildDate() {
+        return lastBuildDate;
+    }
+
+    public String getGenerator() {
+        return generator;
+    }
+
+    public String getDocs() {
+        return docs;
+    }
+
+    public String getCloud() {
+        return cloud;
+    }
+
+    public String getTtl() {
+        return ttl;
+    }
+
+    public String getTextInput() {
+        return textInput;
+    }
+
+    public String getSkipHours() {
+        return skipHours;
+    }
+
+    public String getSkipDays() {
+        return skipDays;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getBlock() {
+        return block;
+    }
+
+    public String getExplicit() {
+        return explicit;
+    }
+
+    public String getComplete() {
+        return complete;
+    }
+
+    public String getNewFeedUrl() {
+        return newFeedUrl;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
 }

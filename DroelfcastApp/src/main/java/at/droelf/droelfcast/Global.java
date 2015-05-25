@@ -20,6 +20,7 @@ public class Global extends Application {
         super.onCreate();
         Logger instance = Logger.INSTANCE;
         Timber.d("onCreate");
+
     }
 
     @Override
