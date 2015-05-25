@@ -52,4 +52,9 @@ ext {
     // Xml parsing
     simpleXml = 'org.simpleframework:simple-xml:2.7.1'
 
+    // dagger
+    apt = 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+    dagger2 = 'com.google.dagger:dagger:2.0'
+    dagger2Compile = 'com.google.dagger:dagger-compiler:2.0'
+    javaxAnnotation = 'org.glassfish:javax.annotation:10.0-b28'
 }

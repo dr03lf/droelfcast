@@ -1,16 +1,26 @@
 buildscript {
     dependencies {
         classpath rootProject.ext.androidPlugin
+        classpath rootProject.ext.apt
     }
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
     compile rootProject.ext.supportv7
     compile project(rootProject.ext.rxAndroid)
+
     compile project(':Common')
     compile project(':Feedparser')
+
+    compile rootProject.ext.dagger2
+    apt rootProject.ext.dagger2Compile
+    provided rootProject.ext.javaxAnnotation
+
+    compile rootProject.ext.mortar
+
 }
 
 

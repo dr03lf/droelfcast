@@ -4,9 +4,10 @@ import timber.log.Timber;
 
 
 public enum Logger {
-    INSTANCE;
+    INSTANCE();
 
     Logger(){
         Timber.plant(new Timber.DebugTree());
+        Timber.d("Logger init done");
     }
 }
