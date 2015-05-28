@@ -1,7 +1,7 @@
 package at.droelf.droelfcast;
 
 import android.app.Activity;
-import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 
 import javax.inject.Inject;
@@ -9,19 +9,23 @@ import javax.inject.Inject;
 import at.droelf.droelfcast.dagger.DaggerService;
 import at.droelf.droelfcast.dagger.scope.GlobalActivity;
 import at.droelf.droelfcast.flow.GsonParceler;
+import at.droelf.droelfcast.flow.HandlesBack;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import dagger.Component;
 import flow.Flow;
+import flow.FlowDelegate;
+import flow.History;
 import flow.path.PathContainerView;
 import mortar.MortarScope;
 import mortar.bundler.BundleServiceRunner;
-import timber.log.Timber;
 
 
 public class MainActivity extends Activity implements Flow.Dispatcher {
 
     private MortarScope activityScope;
+    private FlowDelegate flowDelegate;
+    private HandlesBack containerAsBackTarget;
 
     @InjectView(R.id.container)
     PathContainerView container;
@@ -46,7 +50,7 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.activityScope = initMoartarAndDagger();
+        this.activityScope = initMortarAndDagger();
 
         // Mortar bundle service runner
         BundleServiceRunner.getBundleServiceRunner(this).onCreate(savedInstanceState);
@@ -54,13 +58,82 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
         // set layout and get container
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
+        containerAsBackTarget = (HandlesBack) container;
 
-
-        Timber.d("----- Test: %s %s", gsonParceler, application);
+        // Init flow
+        initFlow(savedInstanceState);
     }
 
-    private MortarScope initMoartarAndDagger(){
+    @Override
+    protected void onNewIntent(final Intent intent) {
+        super.onNewIntent(intent);
+        flowDelegate.onNewIntent(intent);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        flowDelegate.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        flowDelegate.onResume();
+    }
+
+    @Override
+    public Object getSystemService(String name) {
+        // Check if flow has the required service
+        if(flowDelegate != null && flowDelegate.getSystemService(name) != null){
+            return flowDelegate.getSystemService(name);
+        }
+
+        // Check if mortar has the required service
+        if(activityScope != null && activityScope.hasService(name)){
+            return activityScope.getService(name);
+        }
+
+        return super.getSystemService(name);
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        flowDelegate.onSaveInstanceState(outState);
+        BundleServiceRunner.getBundleServiceRunner(this).onSaveInstanceState(outState);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public Object onRetainNonConfigurationInstance() {
+        return flowDelegate.onRetainNonConfigurationInstance();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (isFinishing()) {
+            MortarScope activityScope = MortarScope.findChild(getApplicationContext(), getScopeName());
+            if (activityScope != null) activityScope.destroy();
+        }
+
+        super.onDestroy();
+    }
+
+    @Override
+    public void dispatch(final Flow.Traversal traversal, final Flow.TraversalCallback callback) {
+
+    }
+
+    private void initFlow(Bundle savedInstanceState){
+        @SuppressWarnings("deprecation")
+        final FlowDelegate.NonConfigurationInstance nonConfig = (FlowDelegate.NonConfigurationInstance) getLastNonConfigurationInstance();
+        final History history = History.emptyBuilder().build(); //TODO
+        flowDelegate = FlowDelegate.onCreate(nonConfig, getIntent(), savedInstanceState, gsonParceler, history, this);
+    }
+
+    private MortarScope initMortarAndDagger(){
         final Global.GlobalComponent globalComponent = DaggerService.getDaggerComponent(getApplicationContext());
         final ActivityComponent component = DaggerService.createComponent(ActivityComponent.class, globalComponent);
         component.inject(this);
@@ -73,41 +146,11 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
                     .withService(DaggerService.SERVICE_NAME, component)
                     .build(getScopeName());
         }
-
         return scope;
     }
 
-
-    @Override
-    public Object getSystemService(String name) {
-        return (activityScope != null && activityScope.hasService(name)) ? activityScope.getService(name) : super.getSystemService(name);
-    }
-
-
-    @Override
-    protected void onSaveInstanceState(final Bundle outState) {
-        super.onSaveInstanceState(outState);
-        BundleServiceRunner.getBundleServiceRunner(this).onSaveInstanceState(outState);
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        if (isFinishing()) {
-            MortarScope activityScope = MortarScope.findChild(getApplicationContext(), getScopeName());
-            if (activityScope != null) activityScope.destroy();
-        }
-
-        super.onDestroy();
-    }
-
-
-    public String getScopeName() {
+    private String getScopeName() {
         return getClass().getName();
     }
 
-    @Override
-    public void dispatch(final Flow.Traversal traversal, final Flow.TraversalCallback callback) {
-
-    }
 }
