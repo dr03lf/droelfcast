@@ -1,25 +1,18 @@
 package at.droelf.droelfcast;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.app.Application;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-
-import com.google.gson.Gson;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
-import at.droelf.droelfcast.common.Logger;
-import at.droelf.droelfcast.feedparser.FeedParserService;
-import at.droelf.droelfcast.screen.HandlesBack;
+import at.droelf.droelfcast.dagger.DaggerService;
+import at.droelf.droelfcast.dagger.scope.GlobalActivity;
+import at.droelf.droelfcast.flow.GsonParceler;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import dagger.Component;
 import flow.Flow;
-import flow.FlowDelegate;
-import flow.History;
-import flow.path.Path;
 import flow.path.PathContainerView;
 import mortar.MortarScope;
 import mortar.bundler.BundleServiceRunner;
@@ -36,9 +29,17 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
     @Inject
     GsonParceler gsonParceler;
 
-    @Component(dependencies = Global.GlobalComponent.class)
-    public interface AcitivityComponent{
+    @Inject
+    Global application;
+
+    @GlobalActivity(ActivityComponent.class)
+    @Component(
+            modules = ActivityModule.class,
+            dependencies = Global.GlobalComponent.class
+    )
+    public interface ActivityComponent {
         void inject(MainActivity mainActivity);
+        GsonParceler gsonParceler();
     }
 
     @Override
@@ -54,13 +55,14 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
-        Timber.d("Gson parceler: %s", gsonParceler);
+
+        Timber.d("----- Test: %s %s", gsonParceler, application);
     }
 
     private MortarScope initMoartarAndDagger(){
 
         final Global.GlobalComponent globalComponent = DaggerService.getDaggerComponent(getApplicationContext());
-        final AcitivityComponent component = DaggerService.createComponent(AcitivityComponent.class, globalComponent);
+        final ActivityComponent component = DaggerService.createComponent(ActivityComponent.class, globalComponent);
         component.inject(this);
 
         final MortarScope parent = MortarScope.getScope(getApplicationContext());

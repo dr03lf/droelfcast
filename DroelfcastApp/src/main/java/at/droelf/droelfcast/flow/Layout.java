@@ -1,4 +1,4 @@
-package at.droelf.droelfcast.screen;
+package at.droelf.droelfcast.flow;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

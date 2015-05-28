@@ -1,14 +1,15 @@
 package at.droelf.droelfcast;
 
 import android.app.Application;
+import android.content.Context;
 
 import javax.inject.Inject;
 
 import at.droelf.droelfcast.common.Logger;
-import at.droelf.droelfcast.dagger.ScopeSingleton;
+import at.droelf.droelfcast.dagger.DaggerService;
+import at.droelf.droelfcast.dagger.scope.GlobalApplication;
 import dagger.Component;
 import mortar.MortarScope;
-import timber.log.Timber;
 
 
 public class Global extends Application {
@@ -18,11 +19,13 @@ public class Global extends Application {
 
     private MortarScope rootScope;
 
+    @GlobalApplication(Global.GlobalComponent.class)
     @Component(modules = GlobalModule.class)
     public interface GlobalComponent{
         void inject(Global global);
         Logger logger();
-        GsonParceler gsonParceler();
+        Global global();
+        Context context();
     }
 
     @Override

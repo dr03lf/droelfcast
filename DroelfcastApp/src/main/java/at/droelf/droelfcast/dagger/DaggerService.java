@@ -1,4 +1,4 @@
-package at.droelf.droelfcast;
+package at.droelf.droelfcast.dagger;
 
 import android.content.Context;
 

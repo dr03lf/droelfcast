@@ -3,43 +3,34 @@ package at.droelf.droelfcast;
 import android.app.Application;
 import android.content.Context;
 
-import com.google.gson.Gson;
 
+import at.droelf.droelfcast.Global;
 import at.droelf.droelfcast.common.Logger;
-import at.droelf.droelfcast.dagger.ScopeSingleton;
+import at.droelf.droelfcast.dagger.scope.GlobalApplication;
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 final class GlobalModule {
 
-    private final Application application;
+    private final Global global;
 
-    GlobalModule(Application application){
-        this.application = application;
+    GlobalModule(Global global){
+        this.global = global;
     }
 
     @Provides
-    Application application(){
-        return application;
+    Global global(){
+        return global;
     }
 
     @Provides
     Context context(){
-        return application.getApplicationContext();
+        return global.getApplicationContext();
     }
 
     @Provides
-    GsonParceler provideGsonParceler(Gson gson){
-        return new GsonParceler(gson);
-    }
-
-    @Provides
-    Gson provideGson(){
-        return new Gson();
-    }
-
-    @Provides
+    @GlobalApplication(Global.GlobalComponent.class)
     Logger provideLogger(){
         return Logger.INSTANCE;
     }

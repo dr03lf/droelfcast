@@ -1,4 +1,4 @@
-package at.droelf.droelfcast.screen;
+package at.droelf.droelfcast.flow;
 
 public interface HandlesBack {
   /**
