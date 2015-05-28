@@ -3,13 +3,19 @@ package at.droelf.droelfcast;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.gson.Gson;
 
-import at.droelf.droelfcast.feed.DaggerFeedScreen_Component;
+import javax.inject.Singleton;
+
+import at.droelf.droelfcast.episode.EpisodeScreen;
 import at.droelf.droelfcast.feed.FeedScreen;
 import at.droelf.droelfcast.feed.FeedModule;
+import at.droelf.droelfcast.feedparser.FeedParserService;
 import at.droelf.droelfcast.screen.HandlesBack;
+import dagger.Component;
+import dagger.Module;
 import flow.Flow;
 import flow.FlowDelegate;
 import flow.History;
@@ -79,18 +85,30 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
     }
 
 
+    @Component(modules = {
+        FeedModule.class,
+    })
+    @Singleton
+    public interface RootComponente extends FeedScreen.Component, EpisodeScreen.Component{
+        FeedParserService feedParserService();
+    }
+
+
     @Override
     public Object getSystemService(String name) {
         // Init mortar
         MortarScope scope = MortarScope.findChild(getApplicationContext(), getScopeName());
         if(scope == null){
 
-            final FeedScreen.Component build = DaggerFeedScreen_Component.builder().feedModule(new FeedModule()).build();
+            final RootComponente build = DaggerMainActivity_RootComponente.create();
 
-            scope = MortarScope.buildChild(getApplicationContext())
-                    .withService(DaggerService.SERVICE_NAME, build)
-                    .withService(BundleServiceRunner.SERVICE_NAME, new BundleServiceRunner())
-                    .build(getScopeName());
+//            final FeedScreen.Component build = DaggerFeedScreen_Component.builder().feedModule(new FeedModule()).build();
+//            final RootCompontent build = DaggerMainActivity_RootCompontent.builder().build();
+
+                scope = MortarScope.buildChild(getApplicationContext())
+                        .withService(DaggerService.SERVICE_NAME, build)
+                        .withService(BundleServiceRunner.SERVICE_NAME, new BundleServiceRunner())
+                        .build(getScopeName());
         }
 
         // Init flow

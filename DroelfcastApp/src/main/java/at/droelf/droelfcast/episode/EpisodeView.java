@@ -8,6 +8,7 @@ import android.widget.TextView;
 import javax.inject.Inject;
 
 import at.droelf.droelfcast.DaggerService;
+import at.droelf.droelfcast.MainActivity;
 import at.droelf.droelfcast.R;
 import at.droelf.droelfcast.feed.FeedScreen;
 import butterknife.ButterKnife;

@@ -30,10 +30,10 @@ import timber.log.Timber;
 @Layout(R.layout.screen_feed_list)
 public class FeedScreen extends Path{
 
-    @dagger.Component(modules = FeedModule.class) @Singleton
+    @dagger.Component
+    @Singleton
     public interface Component {
         void inject(FeedView t);
-        FeedParserService feedParserService();
     }
 
     @Singleton

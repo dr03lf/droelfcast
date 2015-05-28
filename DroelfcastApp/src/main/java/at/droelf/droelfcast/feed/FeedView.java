@@ -17,6 +17,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import at.droelf.droelfcast.DaggerService;
+import at.droelf.droelfcast.MainActivity;
 import at.droelf.droelfcast.R;
 import at.droelf.droelfcast.feedparser.model.item.Item;
 import butterknife.ButterKnife;

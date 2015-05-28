@@ -1,5 +1,7 @@
 package at.droelf.droelfcast.feed;
 
+import javax.inject.Singleton;
+
 import at.droelf.droelfcast.feedparser.FeedParserService;
 import dagger.Module;
 import dagger.Provides;
