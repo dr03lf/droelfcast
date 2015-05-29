@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, 
         // Mortar bundle service runner
         BundleServiceRunner.getBundleServiceRunner(this).onCreate(savedInstanceState);
 
+        // actionbar
+        actionBarOwner.takeView(this);
+
         // set layout and get container
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
@@ -88,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, 
 
         // Init flow
         initFlow(savedInstanceState);
+
+
     }
 
     @Override
@@ -152,13 +157,7 @@ public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, 
         setTitle(path.getClass().getSimpleName());
         boolean canGoBack = traversal.destination.size() > 1;
         String title = path.getClass().getSimpleName();
-        ActionBarOwner.MenuAction menu = canGoBack ? null : new ActionBarOwner.MenuAction("Friends", new Runnable() {
-            @Override
-            public void run() {
-                Flow.get(MainActivity.this).set(new FeedScreen());
-            }
-        });
-        actionBarOwner.setConfig(new ActionBarOwner.Config(false, canGoBack, title, menu));
+        actionBarOwner.setConfig(new ActionBarOwner.Config(false, canGoBack, title, null));
 
         container.dispatch(traversal, callback);
     }
@@ -264,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, 
 
     @Override
     public Context getContext() {
-        return null;
+        return this;
     }
 
 }

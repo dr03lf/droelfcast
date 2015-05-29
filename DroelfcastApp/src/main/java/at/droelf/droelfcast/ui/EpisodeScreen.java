@@ -2,9 +2,12 @@ package at.droelf.droelfcast.ui;
 
 import android.os.Bundle;
 
+import javax.inject.Inject;
+
 import at.droelf.droelfcast.R;
 import at.droelf.droelfcast.feedparser.model.item.Item;
 import at.droelf.droelfcast.flow.Layout;
+import at.droelf.droelfcast.stuff.ActionBarOwner;
 import at.droelf.droelfcast.stuff.InjectablePresenter;
 import at.droelf.droelfcast.stuff.WithPresenter;
 import flow.path.Path;
@@ -20,6 +23,9 @@ public class EpisodeScreen extends Path{
 
     public class Presenter extends InjectablePresenter<EpisodeView>{
 
+        @Inject
+        ActionBarOwner actionBarOwner;
+
         public Presenter(PresenterInjector presenterInjector){
             super(presenterInjector);
         }
@@ -27,6 +33,9 @@ public class EpisodeScreen extends Path{
         @Override
         protected void onLoad(Bundle savedInstanceState) {
             super.onLoad(savedInstanceState);
+
+            actionBarOwner.setConfig(new ActionBarOwner.Config(true, true, item.getTitle(), null));
+
             getView().setText(item.getDescription());
         }
 

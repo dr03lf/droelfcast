@@ -14,6 +14,7 @@ import at.droelf.droelfcast.feedparser.FeedParserService;
 import at.droelf.droelfcast.feedparser.model.Feed;
 import at.droelf.droelfcast.feedparser.model.item.Item;
 import at.droelf.droelfcast.flow.Layout;
+import at.droelf.droelfcast.stuff.ActionBarOwner;
 import at.droelf.droelfcast.stuff.InjectablePresenter;
 import at.droelf.droelfcast.stuff.WithPresenter;
 import flow.Flow;
@@ -30,6 +31,9 @@ public class FeedScreen extends Path {
         @Inject
         FeedParserService feedParserService;
 
+        @Inject
+        ActionBarOwner actionBarOwner;
+
         public Presenter(PresenterInjector presenterInjector){
             super(presenterInjector);
         }
@@ -38,6 +42,7 @@ public class FeedScreen extends Path {
         protected void onLoad(Bundle savedInstanceState) {
             super.onLoad(savedInstanceState);
             final FeedView view = getView();
+
 
             InputStream inputStream = null;
             try {
