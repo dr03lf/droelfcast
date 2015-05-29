@@ -1,8 +1,14 @@
 package at.droelf.droelfcast;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import javax.inject.Inject;
 
@@ -11,6 +17,7 @@ import at.droelf.droelfcast.dagger.scope.GlobalActivity;
 import at.droelf.droelfcast.feedparser.FeedParserService;
 import at.droelf.droelfcast.flow.GsonParceler;
 import at.droelf.droelfcast.flow.HandlesBack;
+import at.droelf.droelfcast.stuff.ActionBarOwner;
 import at.droelf.droelfcast.ui.EpisodeScreen;
 import at.droelf.droelfcast.ui.EpisodeView;
 import at.droelf.droelfcast.ui.FeedScreen;
@@ -24,14 +31,18 @@ import flow.History;
 import flow.path.Path;
 import flow.path.PathContainerView;
 import mortar.MortarScope;
+import mortar.MortarScopeDevHelper;
 import mortar.bundler.BundleServiceRunner;
 
+import static android.view.MenuItem.SHOW_AS_ACTION_ALWAYS;
 
-public class MainActivity extends Activity implements Flow.Dispatcher {
+
+public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, ActionBarOwner.Activity {
 
     private MortarScope activityScope;
     private FlowDelegate flowDelegate;
     private HandlesBack containerAsBackTarget;
+    private ActionBarOwner.MenuAction actionBarMenuAction;
 
     @InjectView(R.id.container)
     PathContainerView container;
@@ -42,6 +53,10 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
     @Inject
     Global application;
 
+    @Inject
+    ActionBarOwner actionBarOwner;
+
+
     @GlobalActivity(ActivityComponent.class)
     @Component(
             modules = ActivityModule.class,
@@ -51,6 +66,7 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
         void inject(MainActivity mainActivity);
         GsonParceler gsonParceler();
         FeedParserService feedParserService();
+        ActionBarOwner actionBarOwner();
 
         void inject(FeedScreen.Presenter feedView);
         void inject(EpisodeScreen.Presenter episodeView);
@@ -115,9 +131,8 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
         BundleServiceRunner.getBundleServiceRunner(this).onSaveInstanceState(outState);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public Object onRetainNonConfigurationInstance() {
+    public Object onRetainCustomNonConfigurationInstance() {
         return flowDelegate.onRetainNonConfigurationInstance();
     }
 
@@ -133,14 +148,31 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
 
     @Override
     public void dispatch(final Flow.Traversal traversal, final Flow.TraversalCallback callback) {
-        Path newScreen = traversal.destination.top();
-//        String title = newScreen.getClass().getSimpleName();
+        Path path = traversal.destination.top();
+        setTitle(path.getClass().getSimpleName());
+        boolean canGoBack = traversal.destination.size() > 1;
+        String title = path.getClass().getSimpleName();
+        ActionBarOwner.MenuAction menu = canGoBack ? null : new ActionBarOwner.MenuAction("Friends", new Runnable() {
+            @Override
+            public void run() {
+                Flow.get(MainActivity.this).set(new FeedScreen());
+            }
+        });
+        actionBarOwner.setConfig(new ActionBarOwner.Config(false, canGoBack, title, menu));
+
         container.dispatch(traversal, callback);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (containerAsBackTarget.onBackPressed()) return;
+        if (flowDelegate.onBackPressed()) return;
+        super.onBackPressed();
+    }
+
+
     private void initFlow(Bundle savedInstanceState){
-        @SuppressWarnings("deprecation")
-        final FlowDelegate.NonConfigurationInstance nonConfig = (FlowDelegate.NonConfigurationInstance) getLastNonConfigurationInstance();
+        final FlowDelegate.NonConfigurationInstance nonConfig = (FlowDelegate.NonConfigurationInstance) getLastCustomNonConfigurationInstance();
         final History history = History.single(new FeedScreen());
         flowDelegate = FlowDelegate.onCreate(nonConfig, getIntent(), savedInstanceState, gsonParceler, history, this);
     }
@@ -163,6 +195,76 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
 
     private String getScopeName() {
         return getClass().getName();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (actionBarMenuAction != null) {
+            menu.add(actionBarMenuAction.title)
+                    .setShowAsActionFlags(SHOW_AS_ACTION_ALWAYS)
+                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            actionBarMenuAction.action.run();
+                            return true;
+                        }
+                    });
+        }
+        menu.add("Log Scope Hierarchy")
+                .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Log.d("DemoActivity", MortarScopeDevHelper.scopeHierarchyToString(activityScope));
+                        return true;
+                    }
+                });
+        return true;
+    }
+
+    @Override
+    public void setShowHomeEnabled(boolean enabled) {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowHomeEnabled(false);
+        }
+    }
+
+    @Override
+    public void setUpButtonEnabled(boolean enabled) {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(enabled);
+            actionBar.setHomeButtonEnabled(enabled);
+        }
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
+    }
+
+    @Override
+    public void setMenu(ActionBarOwner.MenuAction action) {
+        if (action != actionBarMenuAction) {
+            actionBarMenuAction = action;
+            invalidateOptionsMenu();
+        }
+    }
+
+    @Override
+    public Context getContext() {
+        return null;
     }
 
 }

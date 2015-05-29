@@ -7,6 +7,7 @@ import at.droelf.droelfcast.MainActivity;
 import at.droelf.droelfcast.dagger.scope.GlobalActivity;
 import at.droelf.droelfcast.feedparser.FeedParserService;
 import at.droelf.droelfcast.flow.GsonParceler;
+import at.droelf.droelfcast.stuff.ActionBarOwner;
 import dagger.Module;
 import dagger.Provides;
 
@@ -30,5 +31,11 @@ public class ActivityModule {
     @GlobalActivity(MainActivity.ActivityComponent.class)
     public FeedParserService provideFeedParser(){
         return new FeedParserService();
+    }
+
+    @Provides
+    @GlobalActivity(MainActivity.ActivityComponent.class)
+    public ActionBarOwner provideActoinBarOwner(){
+        return new ActionBarOwner();
     }
 }

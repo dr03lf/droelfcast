@@ -41,7 +41,7 @@ public class FeedScreen extends Path {
 
             InputStream inputStream = null;
             try {
-                inputStream = view.getContext().getAssets().open("feed.xml");
+                inputStream = view.getContext().getAssets().open("alternativlos.rss");
             } catch (IOException e) {
                 e.printStackTrace();
             }

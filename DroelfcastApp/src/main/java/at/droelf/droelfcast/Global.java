@@ -46,9 +46,11 @@ public class Global extends Application {
 
     @Override
     public Object getSystemService(String name) {
-        Object service = rootScope.getService(name);
+        if(rootScope.hasService(name)){
+            return rootScope.getService(name);
+        }
 
-        return (service != null) ? service : super.getSystemService(name);
+        return super.getSystemService(name);
     }
 
 }
