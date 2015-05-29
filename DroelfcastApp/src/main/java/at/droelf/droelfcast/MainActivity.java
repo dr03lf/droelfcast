@@ -8,14 +8,20 @@ import javax.inject.Inject;
 
 import at.droelf.droelfcast.dagger.DaggerService;
 import at.droelf.droelfcast.dagger.scope.GlobalActivity;
+import at.droelf.droelfcast.feedparser.FeedParserService;
 import at.droelf.droelfcast.flow.GsonParceler;
 import at.droelf.droelfcast.flow.HandlesBack;
+import at.droelf.droelfcast.ui.EpisodeScreen;
+import at.droelf.droelfcast.ui.EpisodeView;
+import at.droelf.droelfcast.ui.FeedScreen;
+import at.droelf.droelfcast.ui.FeedView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import dagger.Component;
 import flow.Flow;
 import flow.FlowDelegate;
 import flow.History;
+import flow.path.Path;
 import flow.path.PathContainerView;
 import mortar.MortarScope;
 import mortar.bundler.BundleServiceRunner;
@@ -44,6 +50,10 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
     public interface ActivityComponent {
         void inject(MainActivity mainActivity);
         GsonParceler gsonParceler();
+        FeedParserService feedParserService();
+
+        void inject(FeedScreen.Presenter feedView);
+        void inject(EpisodeScreen.Presenter episodeView);
     }
 
     @Override
@@ -123,13 +133,15 @@ public class MainActivity extends Activity implements Flow.Dispatcher {
 
     @Override
     public void dispatch(final Flow.Traversal traversal, final Flow.TraversalCallback callback) {
-
+        Path newScreen = traversal.destination.top();
+//        String title = newScreen.getClass().getSimpleName();
+        container.dispatch(traversal, callback);
     }
 
     private void initFlow(Bundle savedInstanceState){
         @SuppressWarnings("deprecation")
         final FlowDelegate.NonConfigurationInstance nonConfig = (FlowDelegate.NonConfigurationInstance) getLastNonConfigurationInstance();
-        final History history = History.emptyBuilder().build(); //TODO
+        final History history = History.single(new FeedScreen());
         flowDelegate = FlowDelegate.onCreate(nonConfig, getIntent(), savedInstanceState, gsonParceler, history, this);
     }
 

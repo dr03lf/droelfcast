@@ -10,6 +10,7 @@ import flow.path.Path;
 import flow.path.PathContainer;
 import flow.path.PathContainerView;
 import flow.Flow;
+import flow.path.PathContextFactory;
 
 
 /** A FrameLayout that can show screens for a {@link flow.Flow}. */
@@ -20,7 +21,17 @@ public class FramePathContainerView extends FrameLayout
 
   @SuppressWarnings("UnusedDeclaration") // Used by layout inflation, of course!
   public FramePathContainerView(Context context, AttributeSet attrs) {
-    this(context, attrs, new SimplePathContainer(R.id.screen_switcher_tag, Path.contextFactory()));
+    this(context, attrs, new SimplePathContainer(R.id.screen_switcher_tag, Path.contextFactory(new PathContextFactory() {
+      @Override
+      public Context setUpContext(Path path, Context parentContext) {
+        return null;
+      }
+
+      @Override
+      public void tearDownContext(Context context) {
+
+      }
+    })));
   }
 
   /**

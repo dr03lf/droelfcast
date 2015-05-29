@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 
 import at.droelf.droelfcast.MainActivity;
 import at.droelf.droelfcast.dagger.scope.GlobalActivity;
+import at.droelf.droelfcast.feedparser.FeedParserService;
 import at.droelf.droelfcast.flow.GsonParceler;
 import dagger.Module;
 import dagger.Provides;
@@ -24,4 +25,10 @@ public class ActivityModule {
         return new Gson();
     }
 
+
+    @Provides
+    @GlobalActivity(MainActivity.ActivityComponent.class)
+    public FeedParserService provideFeedParser(){
+        return new FeedParserService();
+    }
 }
