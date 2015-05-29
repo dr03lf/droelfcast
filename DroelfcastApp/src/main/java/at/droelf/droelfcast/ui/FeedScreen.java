@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
+import javax.inject.Inject;
+
 import at.droelf.droelfcast.R;
 import at.droelf.droelfcast.feedparser.FeedParserService;
 import at.droelf.droelfcast.feedparser.model.Feed;
@@ -25,11 +27,11 @@ public class FeedScreen extends Path {
 
     public static class Presenter extends InjectablePresenter<FeedView> {
 
-        private FeedParserService feedParserService;
+        @Inject
+        FeedParserService feedParserService;
 
-        Presenter(PresenterInjector presenterInjector, FeedParserService feedParserService){
+        public Presenter(PresenterInjector presenterInjector){
             super(presenterInjector);
-            this.feedParserService = feedParserService;
         }
 
         @Override

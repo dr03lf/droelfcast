@@ -7,9 +7,10 @@ import at.droelf.droelfcast.feedparser.model.item.Item;
 import at.droelf.droelfcast.flow.Layout;
 import at.droelf.droelfcast.stuff.InjectablePresenter;
 import at.droelf.droelfcast.stuff.WithPresenter;
+import flow.path.Path;
 
 @Layout(R.layout.screen_episode) @WithPresenter(EpisodeScreen.Presenter.class)
-public class EpisodeScreen {
+public class EpisodeScreen extends Path{
 
     private final Item item;
 
@@ -18,6 +19,7 @@ public class EpisodeScreen {
     }
 
     public class Presenter extends InjectablePresenter<EpisodeView>{
+
         public Presenter(PresenterInjector presenterInjector){
             super(presenterInjector);
         }
@@ -26,6 +28,11 @@ public class EpisodeScreen {
         protected void onLoad(Bundle savedInstanceState) {
             super.onLoad(savedInstanceState);
             getView().setText(item.getDescription());
+        }
+
+        @Override
+        protected void onSave(Bundle outState) {
+            super.onSave(outState);
         }
     }
 }

@@ -5,9 +5,7 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import at.droelf.droelfcast.MainActivity;
 import at.droelf.droelfcast.R;
-import at.droelf.droelfcast.dagger.DaggerService;
 import at.droelf.droelfcast.stuff.PresenterService;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -28,6 +26,18 @@ public class EpisodeView extends FrameLayout{
     protected void onFinishInflate() {
         super.onFinishInflate();
         ButterKnife.inject(this);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        presenter.takeView(this);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        presenter.takeView(this);
+        super.onDetachedFromWindow();
     }
 
     public void setText(String string){
