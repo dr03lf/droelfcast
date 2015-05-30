@@ -1,5 +1,6 @@
 apply plugin: 'java'
 
+
 dependencies {
     compile rootProject.ext.rxJava
 
@@ -8,6 +9,10 @@ dependencies {
         exclude module: 'stax-api'
         exclude module: 'xpp3'
     }
+
+    compile rootProject.ext.dagger2
+    compile rootProject.ext.dagger2Compile
+    compile rootProject.ext.javaxAnnotation
 
     compile project(':Common')
 }

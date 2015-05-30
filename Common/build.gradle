@@ -3,4 +3,14 @@ apply plugin: 'java'
 dependencies {
     compile rootProject.ext.android
     compile rootProject.ext.timber
+
+//    compile rootProject.ext.mortar
+//    compile rootProject.ext.flow
+//    compile rootProject.ext.flowPath
+//     rootProject.ext.javaxAnnotation
+
+
+//    compile rootProject.ext.dagger2
+//    compile rootProject.ext.javaxAnnotation
+//    apt rootProject.ext.dagger2Compile
 }

@@ -13,14 +13,11 @@
 	<atom:link rel="next" href="http://freakshow.fm/feed/mp3/?paged=2" />
 	<atom:link rel="first" href="http://freakshow.fm/feed/mp3/" />
 	<atom:link rel="last" href="http://freakshow.fm/feed/mp3/?paged=16" />
-	<language>de-DE</language>
-	<atom:link rel="payment" title="Flattr this!" href="https://flattr.com/submit/auto?user_id=timpritlove&amp;url=http%3A%2F%2Ffreakshow.fm%2F&amp;language=de_DE&amp;category=audio&amp;title=Freak+Show&amp;description=Menschen%21+Technik%21+Sensationen%21&amp;tags=podcast%2C+freakshow%2C+tim+pritlove%2C+metaebene" type="text/html" />
+	<language>de-DE</language>		<atom:link rel="payment" title="Flattr this!" href="https://flattr.com/submit/auto?user_id=timpritlove&amp;url=http%3A%2F%2Ffreakshow.fm%2F&amp;language=de_DE&amp;category=audio&amp;title=Freak+Show&amp;description=Menschen%21+Technik%21+Sensationen%21&amp;tags=podcast%2C+freakshow%2C+tim+pritlove%2C+metaebene" type="text/html" />
 
-	<atom:contributor><atom:name>Tim Pritlove</atom:name>
-		<atom:uri>http://tim.pritlove.org/</atom:uri>
-	</atom:contributor>
-	<generator>Podlove Podcast Publisher v2.2.0</generator>
-	<image><url>http://freakshow.fm/wp-content/cache/podlove/88/f24a931ad4a10e394270edf037e877/freak-show_original.jpg</url><title>Freak Show</title><link>http://freakshow.fm</link></image>
+<atom:contributor><atom:name>Tim Pritlove</atom:name><atom:uri>http://tim.pritlove.org/</atom:uri></atom:contributor>
+<generator>Podlove Podcast Publisher v2.2.0</generator>
+<image><url>http://freakshow.fm/wp-content/cache/podlove/88/f24a931ad4a10e394270edf037e877/freak-show_original.jpg</url><title>Freak Show</title><link>http://freakshow.fm</link></image>
 
 	<itunes:author>Metaebene Personal Media - Tim Pritlove</itunes:author>
 	<itunes:summary>Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.</itunes:summary>
@@ -36,9 +33,7 @@
 	<itunes:block>no</itunes:block>
 	<itunes:explicit>no</itunes:explicit>
 
-		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/mobile-macs-enhanced-podcast" /><feedburner:info uri="mobile-macs-enhanced-podcast" />
-	<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" />
-	<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://metaebene.superfeedr.com/" /><item>
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/mobile-macs-enhanced-podcast" /><feedburner:info uri="mobile-macs-enhanced-podcast" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://metaebene.superfeedr.com/" /><item>
 		<title>FS154 Das Epilierungszentrum der Popkultur</title>
 		<link>http://feedproxy.google.com/~r/mobile-macs-enhanced-podcast/~3/fsqYo13oYRM/fs154-das-epilierungszentrum-der-popkultur</link>
 		<pubDate>Thu, 30 Apr 2015 00:52:45 +0000</pubDate>
@@ -142,9 +137,9 @@
 			</a>
 			</td>
 			<td class="donation_cell">
-					<a target="_blank" title="Thomann Wishtlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
+					<a target="_blank" title="Thomann Wishlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
 				
-<img class="podlove-contributor-button" alt="Thomann Wishtlist Icon" width="20" src="http://freakshow.fm/wp-content/plugins/podlove-podcasting-plugin-for-wordpress/lib/modules/social/images/icons/thomann-128.png"/>
+<img class="podlove-contributor-button" alt="Thomann Wishlist Icon" width="20" height="20" src="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png" srcset="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png 1x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_40x40.png 2x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_60x60.png 3x"/>
 
 			</a>
 					<a target="_blank" title="Amazon Wishlist" href="http://www.amazon.de/registry/wishlist/1V1E7XILCXWIR">
@@ -859,9 +854,9 @@
 			</a>
 			</td>
 			<td class="donation_cell">
-					<a target="_blank" title="Thomann Wishtlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
+					<a target="_blank" title="Thomann Wishlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
 				
-<img class="podlove-contributor-button" alt="Thomann Wishtlist Icon" width="20" src="http://freakshow.fm/wp-content/plugins/podlove-podcasting-plugin-for-wordpress/lib/modules/social/images/icons/thomann-128.png"/>
+<img class="podlove-contributor-button" alt="Thomann Wishlist Icon" width="20" height="20" src="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png" srcset="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png 1x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_40x40.png 2x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_60x60.png 3x"/>
 
 			</a>
 					<a target="_blank" title="Amazon Wishlist" href="http://www.amazon.de/registry/wishlist/1V1E7XILCXWIR">
@@ -1648,9 +1643,9 @@
 			</a>
 			</td>
 			<td class="donation_cell">
-					<a target="_blank" title="Thomann Wishtlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
+					<a target="_blank" title="Thomann Wishlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
 				
-<img class="podlove-contributor-button" alt="Thomann Wishtlist Icon" width="20" src="http://freakshow.fm/wp-content/plugins/podlove-podcasting-plugin-for-wordpress/lib/modules/social/images/icons/thomann-128.png"/>
+<img class="podlove-contributor-button" alt="Thomann Wishlist Icon" width="20" height="20" src="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png" srcset="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png 1x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_40x40.png 2x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_60x60.png 3x"/>
 
 			</a>
 					<a target="_blank" title="Amazon Wishlist" href="http://www.amazon.de/registry/wishlist/1V1E7XILCXWIR">
@@ -2046,9 +2041,9 @@
 			</a>
 			</td>
 			<td class="donation_cell">
-					<a target="_blank" title="Thomann Wishtlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
+					<a target="_blank" title="Thomann Wishlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
 				
-<img class="podlove-contributor-button" alt="Thomann Wishtlist Icon" width="20" src="http://freakshow.fm/wp-content/plugins/podlove-podcasting-plugin-for-wordpress/lib/modules/social/images/icons/thomann-128.png"/>
+<img class="podlove-contributor-button" alt="Thomann Wishlist Icon" width="20" height="20" src="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png" srcset="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png 1x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_40x40.png 2x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_60x60.png 3x"/>
 
 			</a>
 					<a target="_blank" title="Amazon Wishlist" href="http://www.amazon.de/registry/wishlist/1V1E7XILCXWIR">
@@ -2511,9 +2506,9 @@
 			</a>
 			</td>
 			<td class="donation_cell">
-					<a target="_blank" title="Thomann Wishtlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
+					<a target="_blank" title="Thomann Wishlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
 				
-<img class="podlove-contributor-button" alt="Thomann Wishtlist Icon" width="20" src="http://freakshow.fm/wp-content/plugins/podlove-podcasting-plugin-for-wordpress/lib/modules/social/images/icons/thomann-128.png"/>
+<img class="podlove-contributor-button" alt="Thomann Wishlist Icon" width="20" height="20" src="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png" srcset="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png 1x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_40x40.png 2x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_60x60.png 3x"/>
 
 			</a>
 					<a target="_blank" title="Amazon Wishlist" href="http://www.amazon.de/registry/wishlist/1V1E7XILCXWIR">
@@ -2964,9 +2959,9 @@
 			</a>
 			</td>
 			<td class="donation_cell">
-					<a target="_blank" title="Thomann Wishtlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
+					<a target="_blank" title="Thomann Wishlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
 				
-<img class="podlove-contributor-button" alt="Thomann Wishtlist Icon" width="20" src="http://freakshow.fm/wp-content/plugins/podlove-podcasting-plugin-for-wordpress/lib/modules/social/images/icons/thomann-128.png"/>
+<img class="podlove-contributor-button" alt="Thomann Wishlist Icon" width="20" height="20" src="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png" srcset="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png 1x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_40x40.png 2x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_60x60.png 3x"/>
 
 			</a>
 					<a target="_blank" title="Amazon Wishlist" href="http://www.amazon.de/registry/wishlist/1V1E7XILCXWIR">
@@ -3381,9 +3376,9 @@
 			</a>
 			</td>
 			<td class="donation_cell">
-					<a target="_blank" title="Thomann Wishtlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
+					<a target="_blank" title="Thomann Wishlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
 				
-<img class="podlove-contributor-button" alt="Thomann Wishtlist Icon" width="20" src="http://freakshow.fm/wp-content/plugins/podlove-podcasting-plugin-for-wordpress/lib/modules/social/images/icons/thomann-128.png"/>
+<img class="podlove-contributor-button" alt="Thomann Wishlist Icon" width="20" height="20" src="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png" srcset="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png 1x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_40x40.png 2x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_60x60.png 3x"/>
 
 			</a>
 					<a target="_blank" title="Amazon Wishlist" href="http://www.amazon.de/registry/wishlist/1V1E7XILCXWIR">
@@ -3783,9 +3778,9 @@
 			</a>
 			</td>
 			<td class="donation_cell">
-					<a target="_blank" title="Thomann Wishtlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
+					<a target="_blank" title="Thomann Wishlist" href="http://www.thomann.de/de/wishlist_4u_0af163b22f6e.html">
 				
-<img class="podlove-contributor-button" alt="Thomann Wishtlist Icon" width="20" src="http://freakshow.fm/wp-content/plugins/podlove-podcasting-plugin-for-wordpress/lib/modules/social/images/icons/thomann-128.png"/>
+<img class="podlove-contributor-button" alt="Thomann Wishlist Icon" width="20" height="20" src="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png" srcset="http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_20x20.png 1x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_40x40.png 2x, http://freakshow.fm/wp-content/cache/podlove/61/e90662f92e4c35b9b095a6c50be9a7/thomann-wishlist_60x60.png 3x"/>
 
 			</a>
 					<a target="_blank" title="Amazon Wishlist" href="http://www.amazon.de/registry/wishlist/1V1E7XILCXWIR">
