@@ -10,7 +10,9 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
     compile rootProject.ext.supportv7
+    compile rootProject.ext.supportDesign
     compile project(rootProject.ext.rxAndroid)
+
 
     compile project(':Common')
     compile project(':Feedparser')

@@ -11,8 +11,8 @@ import javax.inject.Inject;
 
 import at.droelf.droelfcast.R;
 import at.droelf.droelfcast.feedparser.FeedParserService;
-import at.droelf.droelfcast.feedparser.model.Feed;
-import at.droelf.droelfcast.feedparser.model.item.Item;
+import at.droelf.droelfcast.feedparser.model.raw.Feed;
+import at.droelf.droelfcast.feedparser.model.raw.item.Item;
 import at.droelf.droelfcast.flow.Layout;
 import at.droelf.droelfcast.stuff.ActionBarOwner;
 import at.droelf.droelfcast.stuff.InjectablePresenter;
@@ -46,7 +46,7 @@ public class FeedScreen extends Path {
 
             InputStream inputStream = null;
             try {
-                inputStream = view.getContext().getAssets().open("alternativlos.rss");
+                inputStream = view.getContext().getAssets().open("feed2.xml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

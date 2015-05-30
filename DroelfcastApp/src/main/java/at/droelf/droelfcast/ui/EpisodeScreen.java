@@ -5,7 +5,7 @@ import android.os.Bundle;
 import javax.inject.Inject;
 
 import at.droelf.droelfcast.R;
-import at.droelf.droelfcast.feedparser.model.item.Item;
+import at.droelf.droelfcast.feedparser.model.raw.item.Item;
 import at.droelf.droelfcast.flow.Layout;
 import at.droelf.droelfcast.stuff.ActionBarOwner;
 import at.droelf.droelfcast.stuff.InjectablePresenter;

@@ -1,4 +1,4 @@
-package at.droelf.droelfcast.feedparser.model.item;
+package at.droelf.droelfcast.feedparser.model.raw.item;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -6,12 +6,12 @@ import org.simpleframework.xml.Root;
 
 import java.util.List;
 
-import at.droelf.droelfcast.feedparser.model.Image;
-import at.droelf.droelfcast.feedparser.model.Link;
-import at.droelf.droelfcast.feedparser.model.annotation.Atom;
-import at.droelf.droelfcast.feedparser.model.annotation.Itunes;
-import at.droelf.droelfcast.feedparser.model.annotation.Podlove;
-import at.droelf.droelfcast.feedparser.model.annotation.Rss;
+import at.droelf.droelfcast.feedparser.model.raw.Image;
+import at.droelf.droelfcast.feedparser.model.raw.RawLink;
+import at.droelf.droelfcast.feedparser.model.raw.annotation.Atom;
+import at.droelf.droelfcast.feedparser.model.raw.annotation.Itunes;
+import at.droelf.droelfcast.feedparser.model.raw.annotation.Podlove;
+import at.droelf.droelfcast.feedparser.model.raw.annotation.Rss;
 
 @Root(strict = false)
 public class Item {
@@ -19,7 +19,7 @@ public class Item {
     @Rss
     @Atom
     @ElementList(entry = "link", required = false, inline = true)
-    private List<Link> links;
+    private List<RawLink> links;
 
 
     //Rss only
@@ -49,7 +49,7 @@ public class Item {
 
     @Rss
     @Element(required = false)
-    private Guid guid;
+    private at.droelf.droelfcast.feedparser.model.raw.item.Guid guid;
 
     @Rss
     @Element(required =  false)
@@ -57,7 +57,7 @@ public class Item {
 
     @Rss
     @Element(required = false)
-    private Source source;
+    private at.droelf.droelfcast.feedparser.model.raw.item.Source source;
 
     //iTunes
     @Itunes
@@ -88,10 +88,10 @@ public class Item {
     //Podlove Simple Chapters
     @Podlove
     @ElementList(required = false, entry = "chapters")
-    private List<Chapter> chapters;
+    private List<at.droelf.droelfcast.feedparser.model.raw.item.Chapter> chapters;
 
 
-    public List<Link> getLinks() {
+    public List<RawLink> getLinks() {
         return links;
     }
 
@@ -119,7 +119,7 @@ public class Item {
         return enclosure;
     }
 
-    public Guid getGuid() {
+    public at.droelf.droelfcast.feedparser.model.raw.item.Guid getGuid() {
         return guid;
     }
 
@@ -127,7 +127,7 @@ public class Item {
         return pubDate;
     }
 
-    public Source getSource() {
+    public at.droelf.droelfcast.feedparser.model.raw.item.Source getSource() {
         return source;
     }
 
@@ -155,7 +155,7 @@ public class Item {
         return summary;
     }
 
-    public List<Chapter> getChapters() {
+    public List<at.droelf.droelfcast.feedparser.model.raw.item.Chapter> getChapters() {
         return chapters;
     }
 }

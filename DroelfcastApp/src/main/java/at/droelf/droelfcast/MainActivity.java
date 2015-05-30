@@ -91,8 +91,6 @@ public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, 
 
         // Init flow
         initFlow(savedInstanceState);
-
-
     }
 
     @Override

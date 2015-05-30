@@ -1,4 +1,4 @@
-package at.droelf.droelfcast.feedparser.model;
+package at.droelf.droelfcast.feedparser.model.raw;
 
 
 import org.simpleframework.xml.Element;
@@ -7,10 +7,10 @@ import org.simpleframework.xml.Root;
 
 import java.util.List;
 
-import at.droelf.droelfcast.feedparser.model.annotation.Atom;
-import at.droelf.droelfcast.feedparser.model.annotation.Itunes;
-import at.droelf.droelfcast.feedparser.model.annotation.Rss;
-import at.droelf.droelfcast.feedparser.model.item.Item;
+import at.droelf.droelfcast.feedparser.model.raw.annotation.Atom;
+import at.droelf.droelfcast.feedparser.model.raw.annotation.Itunes;
+import at.droelf.droelfcast.feedparser.model.raw.annotation.Rss;
+import at.droelf.droelfcast.feedparser.model.raw.item.Item;
 
 
 @Root(strict = false)
@@ -21,7 +21,7 @@ public class Channel {
     @Rss
     @Atom
     @ElementList(entry = "link", required = false, inline = true)
-    private List<Link> links;
+    private List<RawLink> links;
 
     @Rss
     @Itunes
@@ -143,7 +143,7 @@ public class Channel {
         return summary;
     }
 
-    public List<Link> getLinks() {
+    public List<RawLink> getLinks() {
         return links;
     }
 

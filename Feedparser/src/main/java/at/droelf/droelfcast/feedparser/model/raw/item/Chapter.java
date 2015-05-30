@@ -1,4 +1,4 @@
-package at.droelf.droelfcast.feedparser.model.item;
+package at.droelf.droelfcast.feedparser.model.raw.item;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;

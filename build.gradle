@@ -33,7 +33,7 @@ ext {
     timber = 'com.jakewharton.timber:timber:3.1.0'
 
     //start - notrxandroid
-    supportAnnotations = 'com.android.support:support-annotations:22.1.1'
+    supportAnnotations = 'com.android.support:support-annotations:22.2.0'
     supportTestRunner = 'com.android.support.test:runner:0.2'
     supportTestRules = 'com.android.support.test:rules:0.2'
     rxJava = 'io.reactivex:rxjava:1.0.11'
@@ -44,7 +44,9 @@ ext {
 
     /// Android fun
     rxAndroid = ':NotRxAndroid:rxandroid'
-    supportv7 = 'com.android.support:appcompat-v7:22.1.1'
+    supportv7 = 'com.android.support:appcompat-v7:22.2.0'
+    supportDesign = 'com.android.support:design:22.2.0'
+
     mortar = 'com.squareup.mortar:mortar:0.17'
     flow = 'com.squareup.flow:flow:0.10'
     flowPath = 'com.squareup.flow:flow-path:0.10'

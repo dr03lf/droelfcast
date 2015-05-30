@@ -1,6 +1,6 @@
 package at.droelf.droelfcast;
 
-import at.droelf.droelfcast.feedparser.model.item.Item;
+import at.droelf.droelfcast.feedparser.model.raw.item.Item;
 import dagger.Module;
 import dagger.Provides;
 

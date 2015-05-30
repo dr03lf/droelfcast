@@ -1,4 +1,4 @@
-package at.droelf.droelfcast.feedparser.model;
+package at.droelf.droelfcast.feedparser.model.raw;
 
 
 import org.simpleframework.xml.Attribute;

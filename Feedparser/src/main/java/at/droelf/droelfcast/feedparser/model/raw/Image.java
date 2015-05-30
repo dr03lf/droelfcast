@@ -1,11 +1,11 @@
-package at.droelf.droelfcast.feedparser.model;
+package at.droelf.droelfcast.feedparser.model.raw;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import at.droelf.droelfcast.feedparser.model.annotation.Itunes;
-import at.droelf.droelfcast.feedparser.model.annotation.Rss;
+import at.droelf.droelfcast.feedparser.model.raw.annotation.Itunes;
+import at.droelf.droelfcast.feedparser.model.raw.annotation.Rss;
 
 @Root(strict = true)
 public class Image {
