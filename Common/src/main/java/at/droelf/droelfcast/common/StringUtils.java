@@ -38,6 +38,15 @@ public class StringUtils {
         return s != null && s.trim().length() > 0;
     }
 
+    public static boolean hasLength(String... s){
+        for(String string : s){
+            if(!hasLength(string)){
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Determines whether a String has zero length or not.
      * <p>

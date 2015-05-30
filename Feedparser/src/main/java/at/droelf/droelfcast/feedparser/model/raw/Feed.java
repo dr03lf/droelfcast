@@ -5,7 +5,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-@Root(strict = true)
+@Root(strict = false)
 public class Feed {
 
     @Element(required = true)

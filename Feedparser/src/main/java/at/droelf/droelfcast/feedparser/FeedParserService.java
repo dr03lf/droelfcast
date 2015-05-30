@@ -6,9 +6,14 @@ import java.io.InputStream;
 import java.util.List;
 
 import at.droelf.droelfcast.common.O;
+import at.droelf.droelfcast.feedparser.model.converter.ImageConverter;
 import at.droelf.droelfcast.feedparser.model.converter.LinkConverter;
+import at.droelf.droelfcast.feedparser.model.parsed.image.ImageBundle;
 import at.droelf.droelfcast.feedparser.model.parsed.link.LinkAlternateFeed;
+import at.droelf.droelfcast.feedparser.model.parsed.link.LinkBundle;
 import at.droelf.droelfcast.feedparser.model.parsed.link.LinkPagedFeed;
+import at.droelf.droelfcast.feedparser.model.parsed.link.LinkPayment;
+import at.droelf.droelfcast.feedparser.model.parsed.link.LinkRss;
 import at.droelf.droelfcast.feedparser.model.raw.Feed;
 import rx.Observable;
 import rx.Subscriber;
@@ -22,13 +27,15 @@ public class FeedParserService {
             public void call(Subscriber<? super Feed> subscriber) {
 
                 try {
-
                     Persister persister = new Persister();
                     Feed feed = persister.read(Feed.class, inputStream);
 
                     LinkConverter linkConverter = new LinkConverter();
-                    List<LinkAlternateFeed> alernateFeedLinks = linkConverter.getAlternateFeedLinks(feed.getChannel().getLinks());
-                    O<LinkPagedFeed> linkPagedFeed = linkConverter.getLinkPagedFeed(feed.getChannel().getLinks());
+                    ImageConverter imageConverter = new ImageConverter();
+
+                    LinkBundle linkBundle = linkConverter.getLinkBundle(feed.getChannel().getLinks());
+                    ImageBundle imageBundle = imageConverter.getImageBundle(feed.getChannel().getImages());
+
 
                     subscriber.onNext(feed);
                     Timber.d("test test test");

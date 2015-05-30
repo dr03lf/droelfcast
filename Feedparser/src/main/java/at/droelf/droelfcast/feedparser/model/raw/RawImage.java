@@ -8,7 +8,7 @@ import at.droelf.droelfcast.feedparser.model.raw.annotation.Itunes;
 import at.droelf.droelfcast.feedparser.model.raw.annotation.Rss;
 
 @Root(strict = true)
-public class Image {
+public class RawImage {
 
     @Itunes
     @Attribute(required = false)
@@ -38,4 +38,32 @@ public class Image {
     @Element(required = false)
     private Integer height;
 
+
+    public String getHref() {
+        return href;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Integer getWidth() {
+        return width;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
 }

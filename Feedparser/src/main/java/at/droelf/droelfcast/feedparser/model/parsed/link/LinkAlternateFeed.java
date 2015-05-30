@@ -1,6 +1,6 @@
 package at.droelf.droelfcast.feedparser.model.parsed.link;
 
-public class LinkAlternateFeed extends Link{
+public class LinkAlternateFeed extends LinkSimple {
 
     private final String title;
     private final String type;

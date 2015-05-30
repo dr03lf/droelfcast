@@ -26,7 +26,7 @@ public class Channel {
     @Rss
     @Itunes
     @ElementList(entry = "image", required = false, inline = true)
-    private List<Image> images;
+    private List<RawImage> images;
 
 
     @Itunes
@@ -56,8 +56,8 @@ public class Channel {
     private String language;
 
     @Rss
-    @Element(required = false)
-    private String copyright;
+    @ElementList(required = false, entry = "copyright", inline = true)
+    private List<String> copyright;
 
     @Rss
     @Element(required = false)
@@ -147,7 +147,7 @@ public class Channel {
         return links;
     }
 
-    public List<Image> getImages() {
+    public List<RawImage> getImages() {
         return images;
     }
 
@@ -171,7 +171,7 @@ public class Channel {
         return language;
     }
 
-    public String getCopyright() {
+    public List<String> getCopyright() {
         return copyright;
     }
 

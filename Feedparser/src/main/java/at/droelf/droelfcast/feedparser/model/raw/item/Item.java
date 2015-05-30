@@ -6,7 +6,7 @@ import org.simpleframework.xml.Root;
 
 import java.util.List;
 
-import at.droelf.droelfcast.feedparser.model.raw.Image;
+import at.droelf.droelfcast.feedparser.model.raw.RawImage;
 import at.droelf.droelfcast.feedparser.model.raw.RawLink;
 import at.droelf.droelfcast.feedparser.model.raw.annotation.Atom;
 import at.droelf.droelfcast.feedparser.model.raw.annotation.Itunes;
@@ -36,12 +36,12 @@ public class Item {
     private String author;
 
     @Rss
-    @Element(required = false)
-    private String category;
+    @ElementList(required = false, entry = "category", inline = true)
+    private List<String> category;
 
     @Rss
-    @Element(required = false)
-    private String comments;
+    @ElementList(required = false, entry = "comments", inline = true)
+    private List<String> comments;
 
     @Rss
     @Element(required = false)
@@ -66,7 +66,7 @@ public class Item {
 
     @Itunes
     @ElementList(entry = "image", required = false, inline = true)
-    private List<Image> images;
+    private List<RawImage> images;
 
     @Itunes
     @Element(required = false)
@@ -107,11 +107,11 @@ public class Item {
         return author;
     }
 
-    public String getCategory() {
+    public List<String> getCategory() {
         return category;
     }
 
-    public String getComments() {
+    public List<String> getComments() {
         return comments;
     }
 
@@ -135,7 +135,7 @@ public class Item {
         return block;
     }
 
-    public List<Image> getImages() {
+    public List<RawImage> getImages() {
         return images;
     }
 

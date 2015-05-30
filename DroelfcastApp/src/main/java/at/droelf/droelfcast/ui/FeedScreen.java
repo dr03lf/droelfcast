@@ -46,7 +46,7 @@ public class FeedScreen extends Path {
 
             InputStream inputStream = null;
             try {
-                inputStream = view.getContext().getAssets().open("feed2.xml");
+                inputStream = view.getContext().getAssets().open("tal.xml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

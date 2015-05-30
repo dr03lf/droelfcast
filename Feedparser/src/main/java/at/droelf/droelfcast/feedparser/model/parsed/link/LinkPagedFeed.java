@@ -2,27 +2,27 @@ package at.droelf.droelfcast.feedparser.model.parsed.link;
 
 import at.droelf.droelfcast.common.O;
 
-public class LinkPagedFeed {
+public class LinkPagedFeed implements Link{
 
-    private final O<Link> next;
-    private final O<Link> first;
-    private final O<Link> last;
+    private final O<LinkSimple> next;
+    private final O<LinkSimple> first;
+    private final O<LinkSimple> last;
 
-    public LinkPagedFeed(O<Link> next, O<Link> first, O<Link> last) {
+    public LinkPagedFeed(O<LinkSimple> next, O<LinkSimple> first, O<LinkSimple> last) {
         this.next = next;
         this.first = first;
         this.last = last;
     }
 
-    public O<Link> getNext() {
+    public O<LinkSimple> getNext() {
         return next;
     }
 
-    public O<Link> getFirst() {
+    public O<LinkSimple> getFirst() {
         return first;
     }
 
-    public O<Link> getLast() {
+    public O<LinkSimple> getLast() {
         return last;
     }
 }

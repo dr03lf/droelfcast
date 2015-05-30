@@ -8,7 +8,8 @@ public enum LinkType {
     PAGED_LAST("last"),
     DISTRI_HUB("hub"),
     DISTRI_SELF("self"),
-    RSS_LINK(null)
+    RSS_LINK(null),
+    PAYMENT("payment")
     ;
 
 

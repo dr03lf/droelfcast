@@ -28,7 +28,16 @@ public class O<T> {
 
     static class OException extends RuntimeException{
         public OException() {
-            super("Something strong happend, don't access an O without checking e(), tststss");
+            super("Something strong happened, don't access an O without checking e(), tststss");
         }
+    }
+
+    public static boolean allEmpty(O... os){
+        for(O o : os){
+            if(!o.e()){
+                return false;
+            }
+        }
+        return true;
     }
 }
