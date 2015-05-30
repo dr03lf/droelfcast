@@ -20,4 +20,16 @@ public class Enclosure {
     @Attribute(required = true)
     private String type;
 
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getLength() {
+        return length;
+    }
+
+    public String getType() {
+        return type;
+    }
 }

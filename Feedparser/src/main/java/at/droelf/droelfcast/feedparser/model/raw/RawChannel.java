@@ -10,11 +10,11 @@ import java.util.List;
 import at.droelf.droelfcast.feedparser.model.raw.annotation.Atom;
 import at.droelf.droelfcast.feedparser.model.raw.annotation.Itunes;
 import at.droelf.droelfcast.feedparser.model.raw.annotation.Rss;
-import at.droelf.droelfcast.feedparser.model.raw.item.Item;
+import at.droelf.droelfcast.feedparser.model.raw.item.RawItem;
 
 
 @Root(strict = false)
-public class Channel {
+public class RawChannel {
 
 
 
@@ -39,7 +39,7 @@ public class Channel {
     @Atom
     @Rss
     @ElementList(entry = "item", required = false, inline = true)
-    private List<Item> items;
+    private List<RawItem> items;
 
 
     // Rss only stuff
@@ -155,7 +155,7 @@ public class Channel {
         return categories;
     }
 
-    public List<Item> getItems() {
+    public List<RawItem> getItems() {
         return items;
     }
 

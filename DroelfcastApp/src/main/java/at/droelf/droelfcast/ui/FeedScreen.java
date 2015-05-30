@@ -11,8 +11,10 @@ import javax.inject.Inject;
 
 import at.droelf.droelfcast.R;
 import at.droelf.droelfcast.feedparser.FeedParserService;
+import at.droelf.droelfcast.feedparser.model.parsed.Channel;
+import at.droelf.droelfcast.feedparser.model.parsed.item.Item;
 import at.droelf.droelfcast.feedparser.model.raw.Feed;
-import at.droelf.droelfcast.feedparser.model.raw.item.Item;
+import at.droelf.droelfcast.feedparser.model.raw.item.RawItem;
 import at.droelf.droelfcast.flow.Layout;
 import at.droelf.droelfcast.stuff.ActionBarOwner;
 import at.droelf.droelfcast.stuff.InjectablePresenter;
@@ -46,14 +48,15 @@ public class FeedScreen extends Path {
 
             InputStream inputStream = null;
             try {
-                inputStream = view.getContext().getAssets().open("tal.xml");
+                inputStream = view.getContext().getAssets().open("feed.xml");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             feedParserService.parseFeed(inputStream)
                 .observeOn(HandlerSchedulers.from(new Handler()))
-                .subscribe(new Subscriber<Feed>() {
+                .subscribe(new Subscriber<Channel>() {
                     @Override
                     public void onCompleted() {
 
@@ -65,8 +68,8 @@ public class FeedScreen extends Path {
                     }
 
                     @Override
-                    public void onNext(Feed feed) {
-                        view.setFeedList(feed.getChannel().getItems());
+                    public void onNext(Channel channel) {
+                        view.setFeedList(channel.getItems());
                     }
                 });
 

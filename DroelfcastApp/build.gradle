@@ -61,6 +61,7 @@ android {
     packagingOptions{
         exclude 'META-INF/services/com.fasterxml.jackson.core.JsonFactory'
         exclude 'META-INF/services/com.fasterxml.jackson.core.ObjectCodec'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
 }
 

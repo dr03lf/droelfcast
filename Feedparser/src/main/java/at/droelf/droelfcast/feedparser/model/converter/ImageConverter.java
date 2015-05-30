@@ -14,6 +14,11 @@ import at.droelf.droelfcast.feedparser.model.raw.RawImage;
 public class ImageConverter {
 
     public ImageBundle getImageBundle(List<RawImage> rawImages){
+
+        if (rawImages == null) {
+            return new ImageBundle(O.<ImageItunes>n(), O.<ImageRss>n());
+        }
+
         final List<RawImage> rawRssImages = new ArrayList<>();
         final List<RawImage> rawItunesImage = new ArrayList<>();
 
@@ -23,6 +28,7 @@ public class ImageConverter {
 
             } else if(StringUtils.hasLength(rawImage.getHref())){
                 rawItunesImage.add(rawImage);
+
             }
         }
 

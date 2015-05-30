@@ -5,7 +5,8 @@ import android.os.Bundle;
 import javax.inject.Inject;
 
 import at.droelf.droelfcast.R;
-import at.droelf.droelfcast.feedparser.model.raw.item.Item;
+import at.droelf.droelfcast.feedparser.model.parsed.item.Item;
+import at.droelf.droelfcast.feedparser.model.raw.item.RawItem;
 import at.droelf.droelfcast.flow.Layout;
 import at.droelf.droelfcast.stuff.ActionBarOwner;
 import at.droelf.droelfcast.stuff.InjectablePresenter;
@@ -34,9 +35,9 @@ public class EpisodeScreen extends Path{
         protected void onLoad(Bundle savedInstanceState) {
             super.onLoad(savedInstanceState);
 
-            actionBarOwner.setConfig(new ActionBarOwner.Config(true, true, item.getTitle(), null));
+            actionBarOwner.setConfig(new ActionBarOwner.Config(true, true, item.getItemInfo().getTitle(), null));
 
-            getView().setText(item.getDescription());
+            getView().setText(item.getItemInfo().getContent());
         }
 
         @Override

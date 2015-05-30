@@ -2,18 +2,39 @@ package at.droelf.droelfcast.feedparser.model.parsed;
 
 import java.util.List;
 
-import at.droelf.droelfcast.common.O;
-import at.droelf.droelfcast.feedparser.model.parsed.link.LinkAlternateFeed;
-import at.droelf.droelfcast.feedparser.model.parsed.link.LinkPagedFeed;
-import at.droelf.droelfcast.feedparser.model.parsed.link.LinkPayment;
-import at.droelf.droelfcast.feedparser.model.parsed.link.LinkRss;
+import at.droelf.droelfcast.feedparser.model.parsed.image.ImageBundle;
+import at.droelf.droelfcast.feedparser.model.parsed.item.Item;
+import at.droelf.droelfcast.feedparser.model.parsed.link.LinkBundle;
 
 public class Channel {
 
+    private ChannelInfo channelInfo;
+    private LinkBundle linkBundle;
+    private ImageBundle imageBundle;
 
-//    public Channel(List<LinkAlternateFeed> linkAlternateFeeds, O<LinkPagedFeed> linkPagedFeeds, O<LinkRss> linkRss) {
-//        this.linkAlternateFeeds = linkAlternateFeeds;
-//        this.linkPagedFeeds = linkPagedFeeds;
-//        this.linkRss = linkRss;
-//    }
+    private List<Item> items;
+
+
+    public Channel(ChannelInfo channelInfo, LinkBundle linkBundle, ImageBundle imageBundle, List<Item> items) {
+        this.channelInfo = channelInfo;
+        this.linkBundle = linkBundle;
+        this.imageBundle = imageBundle;
+        this.items = items;
+    }
+
+    public ChannelInfo getChannelInfo() {
+        return channelInfo;
+    }
+
+    public LinkBundle getLinkBundle() {
+        return linkBundle;
+    }
+
+    public ImageBundle getImageBundle() {
+        return imageBundle;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
 }

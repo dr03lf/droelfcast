@@ -14,7 +14,7 @@ import at.droelf.droelfcast.feedparser.model.raw.annotation.Podlove;
 import at.droelf.droelfcast.feedparser.model.raw.annotation.Rss;
 
 @Root(strict = false)
-public class Item {
+public class RawItem {
 
     @Rss
     @Atom
@@ -90,6 +90,10 @@ public class Item {
     @ElementList(required = false, entry = "chapters")
     private List<at.droelf.droelfcast.feedparser.model.raw.item.Chapter> chapters;
 
+    @Podlove
+    @Element(required = false, name = "encoded")
+    private String content;
+
 
     public List<RawLink> getLinks() {
         return links;
@@ -157,5 +161,9 @@ public class Item {
 
     public List<at.droelf.droelfcast.feedparser.model.raw.item.Chapter> getChapters() {
         return chapters;
+    }
+
+    public String getContent() {
+        return content;
     }
 }

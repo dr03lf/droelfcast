@@ -9,13 +9,13 @@ import org.simpleframework.xml.Root;
 public class Feed {
 
     @Element(required = true)
-    private Channel channel;
+    private RawChannel channel;
 
     @Attribute(required = true)
     private String version;
 
 
-    public Channel getChannel() {
+    public RawChannel getChannel() {
         return channel;
     }
 

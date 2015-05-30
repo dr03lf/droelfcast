@@ -1,20 +1,20 @@
 package at.droelf.droelfcast;
 
-import at.droelf.droelfcast.feedparser.model.raw.item.Item;
+import at.droelf.droelfcast.feedparser.model.raw.item.RawItem;
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public class EpisodeModule{
 
-    private Item mItem;
+    private RawItem mItem;
 
-    public EpisodeModule(Item item){
+    public EpisodeModule(RawItem item){
         this.mItem = item;
     }
 
     @Provides
-    public Item provideItem(){
+    public RawItem provideItem(){
         return mItem;
     }
 }

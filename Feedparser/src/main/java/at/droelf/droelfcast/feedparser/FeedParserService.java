@@ -3,17 +3,18 @@ package at.droelf.droelfcast.feedparser;
 import org.simpleframework.xml.core.Persister;
 
 import java.io.InputStream;
-import java.util.List;
 
-import at.droelf.droelfcast.common.O;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import at.droelf.droelfcast.feedparser.model.converter.ChannelConverter;
+import at.droelf.droelfcast.feedparser.model.converter.ChannelInfoConverter;
 import at.droelf.droelfcast.feedparser.model.converter.ImageConverter;
+import at.droelf.droelfcast.feedparser.model.converter.ItemConverter;
+import at.droelf.droelfcast.feedparser.model.converter.ItemInfoConverter;
 import at.droelf.droelfcast.feedparser.model.converter.LinkConverter;
-import at.droelf.droelfcast.feedparser.model.parsed.image.ImageBundle;
-import at.droelf.droelfcast.feedparser.model.parsed.link.LinkAlternateFeed;
-import at.droelf.droelfcast.feedparser.model.parsed.link.LinkBundle;
-import at.droelf.droelfcast.feedparser.model.parsed.link.LinkPagedFeed;
-import at.droelf.droelfcast.feedparser.model.parsed.link.LinkPayment;
-import at.droelf.droelfcast.feedparser.model.parsed.link.LinkRss;
+import at.droelf.droelfcast.feedparser.model.converter.MediaInfoConverter;
+import at.droelf.droelfcast.feedparser.model.parsed.Channel;
 import at.droelf.droelfcast.feedparser.model.raw.Feed;
 import rx.Observable;
 import rx.Subscriber;
@@ -21,24 +22,34 @@ import timber.log.Timber;
 
 public class FeedParserService {
 
-    public Observable<Feed> parseFeed(final InputStream inputStream) {
-        return Observable.create(new Observable.OnSubscribe<Feed>() {
+    @Inject Persister persister;
+    @Inject ChannelConverter channelConverter;
+
+    @dagger.Component(modules = Module.class)
+    @Singleton
+    public interface Component {
+        void inject(FeedParserService feedParserService);
+        Persister persister();
+        ChannelConverter channelconverter();
+    }
+
+
+    public FeedParserService(){
+        final Component build = DaggerFeedParserService_Component.builder()
+                .module(new Module())
+                .build();
+        build.inject(this);
+    }
+
+    public Observable<Channel> parseFeed(final InputStream inputStream) {
+        return Observable.create(new Observable.OnSubscribe<Channel>() {
             @Override
-            public void call(Subscriber<? super Feed> subscriber) {
+            public void call(Subscriber<? super Channel> subscriber) {
 
                 try {
-                    Persister persister = new Persister();
-                    Feed feed = persister.read(Feed.class, inputStream);
-
-                    LinkConverter linkConverter = new LinkConverter();
-                    ImageConverter imageConverter = new ImageConverter();
-
-                    LinkBundle linkBundle = linkConverter.getLinkBundle(feed.getChannel().getLinks());
-                    ImageBundle imageBundle = imageConverter.getImageBundle(feed.getChannel().getImages());
-
-
-                    subscriber.onNext(feed);
-                    Timber.d("test test test");
+                    final Feed feed = persister.read(Feed.class, inputStream);
+                    final Channel channel = channelConverter.getChannel(feed.getChannel());
+                    subscriber.onNext(channel);
 
                 } catch (Exception e) {
                     Timber.e(e, "Failure parsing xml");
