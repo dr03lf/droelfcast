@@ -1,9 +1,12 @@
 package at.droelf.droelfcast;
 
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 
 import at.droelf.droelfcast.MainActivity;
+import at.droelf.droelfcast.backend.FeedService;
 import at.droelf.droelfcast.dagger.scope.GlobalActivity;
 import at.droelf.droelfcast.feedparser.FeedParserService;
 import at.droelf.droelfcast.flow.GsonParceler;
@@ -31,6 +34,12 @@ public class ActivityModule {
     @GlobalActivity(MainActivity.ActivityComponent.class)
     public FeedParserService provideFeedParser(){
         return new FeedParserService();
+    }
+
+    @Provides
+    @GlobalActivity(MainActivity.ActivityComponent.class)
+    public FeedService provideFeedService(FeedParserService feedParserService, Context context){
+        return new FeedService(feedParserService, context);
     }
 
     @Provides

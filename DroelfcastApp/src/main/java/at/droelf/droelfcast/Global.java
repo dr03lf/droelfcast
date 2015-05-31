@@ -3,6 +3,10 @@ package at.droelf.droelfcast;
 import android.app.Application;
 import android.content.Context;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import javax.inject.Inject;
 
 import at.droelf.droelfcast.common.Logger;
@@ -36,6 +40,18 @@ public class Global extends Application {
         this.rootScope = initMortarScope(component);
 
         DaggerService.<GlobalComponent>getDaggerComponent(this).inject(this);
+
+        DisplayImageOptions build = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .build();
+
+        ImageLoaderConfiguration builder = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                .defaultDisplayImageOptions(build)
+                .build();
+
+        ImageLoader.getInstance().init(builder);
+
     }
 
     private MortarScope initMortarScope(Object service){

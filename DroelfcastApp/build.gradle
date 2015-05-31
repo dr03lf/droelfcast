@@ -11,8 +11,9 @@ apply plugin: 'com.neenbedankt.android-apt'
 dependencies {
     compile rootProject.ext.supportv7
     compile rootProject.ext.supportDesign
+    compile rootProject.ext.cardview
+    compile rootProject.ext.recyclerview
     compile project(rootProject.ext.rxAndroid)
-
 
     compile project(':Common')
     compile project(':Feedparser')
@@ -31,6 +32,10 @@ dependencies {
 
     compile rootProject.ext.autoParcel
     apt rootProject.ext.autoParcelProcessor
+
+    compile rootProject.ext.uil
+
+    compile rootProject.ext.recycleranimation
 }
 
 

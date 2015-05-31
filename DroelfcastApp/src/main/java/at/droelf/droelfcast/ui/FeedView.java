@@ -26,8 +26,7 @@ import butterknife.InjectView;
 
 public class FeedView extends FrameLayout{
 
-    @Inject
-    FeedScreen.Presenter presenter;
+    private final FeedScreen.Presenter presenter;
 
     @InjectView(R.id.feed_episodes)
     ListView listView;

@@ -46,6 +46,9 @@ ext {
     rxAndroid = ':NotRxAndroid:rxandroid'
     supportv7 = 'com.android.support:appcompat-v7:22.2.0'
     supportDesign = 'com.android.support:design:22.2.0'
+    cardview = 'com.android.support:cardview-v7:22.2.0'
+    recyclerview = 'com.android.support:recyclerview-v7:22.2.0'
+    recycleranimation = 'jp.wasabeef:recyclerview-animators:1.2.0@aar'
 
     mortar = 'com.squareup.mortar:mortar:0.17'
     flow = 'com.squareup.flow:flow:0.10'
@@ -69,4 +72,7 @@ ext {
     //auto parcel
     autoParcel = 'com.github.frankiesardo:auto-parcel:0.3'
     autoParcelProcessor = 'com.github.frankiesardo:auto-parcel-processor:0.3'
+
+    // image loader
+    uil = 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
 }

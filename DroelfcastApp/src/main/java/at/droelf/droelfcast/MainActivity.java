@@ -1,6 +1,5 @@
 package at.droelf.droelfcast;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.view.MenuItem;
 
 import javax.inject.Inject;
 
+import at.droelf.droelfcast.backend.FeedService;
 import at.droelf.droelfcast.dagger.DaggerService;
 import at.droelf.droelfcast.dagger.scope.GlobalActivity;
 import at.droelf.droelfcast.feedparser.FeedParserService;
@@ -19,9 +19,8 @@ import at.droelf.droelfcast.flow.GsonParceler;
 import at.droelf.droelfcast.flow.HandlesBack;
 import at.droelf.droelfcast.stuff.ActionBarOwner;
 import at.droelf.droelfcast.ui.EpisodeScreen;
-import at.droelf.droelfcast.ui.EpisodeView;
+import at.droelf.droelfcast.ui.FeedListScreen;
 import at.droelf.droelfcast.ui.FeedScreen;
-import at.droelf.droelfcast.ui.FeedView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import dagger.Component;
@@ -67,9 +66,11 @@ public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, 
         GsonParceler gsonParceler();
         FeedParserService feedParserService();
         ActionBarOwner actionBarOwner();
+        FeedService feedService();
 
         void inject(FeedScreen.Presenter feedView);
         void inject(EpisodeScreen.Presenter episodeView);
+        void inject(FeedListScreen.Presenter feedListView);
     }
 
     @Override
@@ -170,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, 
 
     private void initFlow(Bundle savedInstanceState){
         final FlowDelegate.NonConfigurationInstance nonConfig = (FlowDelegate.NonConfigurationInstance) getLastCustomNonConfigurationInstance();
-        final History history = History.single(new FeedScreen());
+        final History history = History.single(new FeedListScreen());
         flowDelegate = FlowDelegate.onCreate(nonConfig, getIntent(), savedInstanceState, gsonParceler, history, this);
     }
 
