@@ -4,9 +4,14 @@ package at.droelf.droelfcast;
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.squareup.okhttp.OkHttpClient;
+
+import java.util.concurrent.TimeUnit;
 
 import at.droelf.droelfcast.MainActivity;
 import at.droelf.droelfcast.backend.FeedService;
+import at.droelf.droelfcast.backend.download.FeedLoader;
+import at.droelf.droelfcast.backend.storage.RawFeedCache;
 import at.droelf.droelfcast.dagger.scope.GlobalActivity;
 import at.droelf.droelfcast.feedparser.FeedParserService;
 import at.droelf.droelfcast.flow.GsonParceler;
@@ -38,8 +43,22 @@ public class ActivityModule {
 
     @Provides
     @GlobalActivity(MainActivity.ActivityComponent.class)
-    public FeedService provideFeedService(FeedParserService feedParserService, Context context){
-        return new FeedService(feedParserService, context);
+    public OkHttpClient provideOkHttpClient(){
+        final OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(30, TimeUnit.SECONDS);
+        return okHttpClient;
+    }
+
+    @Provides
+    @GlobalActivity(MainActivity.ActivityComponent.class)
+    public FeedLoader provideFeedLoader(OkHttpClient okHttpClient){
+        return new FeedLoader(okHttpClient, new RawFeedCache()); //TODO
+    }
+
+    @Provides
+    @GlobalActivity(MainActivity.ActivityComponent.class)
+    public FeedService provideFeedService(FeedParserService feedParserService, FeedLoader feedLoader, Context context){
+        return new FeedService(feedParserService, feedLoader, context);
     }
 
     @Provides

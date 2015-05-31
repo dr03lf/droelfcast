@@ -4,6 +4,9 @@ dependencies {
     compile rootProject.ext.android
     compile rootProject.ext.timber
 
+    compile rootProject.ext.okhttp
+    compile rootProject.ext.apachecodec
+
 //    compile rootProject.ext.mortar
 //    compile rootProject.ext.flow
 //    compile rootProject.ext.flowPath

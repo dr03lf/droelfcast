@@ -1,10 +1,6 @@
 package at.droelf.droelfcast.ui;
 
 import android.os.Bundle;
-import android.os.Handler;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 
 import javax.inject.Inject;

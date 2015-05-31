@@ -2,6 +2,7 @@ package at.droelf.droelfcast.feedparser;
 
 import org.simpleframework.xml.core.Persister;
 
+import java.io.File;
 import java.io.InputStream;
 
 import javax.inject.Inject;
@@ -41,15 +42,15 @@ public class FeedParserService {
         build.inject(this);
     }
 
-    public Observable<Channel> parseFeed(final InputStream inputStream) {
-        return Observable.create(new Observable.OnSubscribe<Channel>() {
+    public Observable<FeedParserResponse> parseFeed(final String url, final File file) {
+        return Observable.create(new Observable.OnSubscribe<FeedParserResponse>() {
             @Override
-            public void call(Subscriber<? super Channel> subscriber) {
+            public void call(Subscriber<? super FeedParserResponse> subscriber) {
 
                 try {
-                    final Feed feed = persister.read(Feed.class, inputStream);
+                    final Feed feed = persister.read(Feed.class, file);
                     final Channel channel = channelConverter.getChannel(feed.getChannel());
-                    subscriber.onNext(channel);
+                    subscriber.onNext(new FeedParserResponse(url, channel));
 
                 } catch (Exception e) {
                     Timber.e(e, "Failure parsing xml");

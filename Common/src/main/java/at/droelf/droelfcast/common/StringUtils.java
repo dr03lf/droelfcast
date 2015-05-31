@@ -211,4 +211,8 @@ public class StringUtils {
         }
         return string;
     }
+
+    public static String removeSpecialCharacters(String str) {
+        return str.replaceAll("[^a-zA-Z0-9_-]", "");
+    }
 }

@@ -75,4 +75,15 @@ ext {
 
     // image loader
     uil = 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+
+    // okhttp
+    okhttp = 'com.squareup.okhttp:okhttp:2.4.0'
+
+    // apache common
+    apachecodec = 'commons-codec:commons-codec:1.5'
+    apacheio = 'commons-io:commons-io:2.4'
+
+    // jackson
+    jackson = 'com.fasterxml.jackson.core:jackson-databind:2.4.4'
+
 }

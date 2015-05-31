@@ -11,15 +11,19 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import at.droelf.droelfcast.R;
+import at.droelf.droelfcast.backend.FeedService_Factory;
 import at.droelf.droelfcast.common.StringUtils;
+import at.droelf.droelfcast.feedparser.FeedParserResponse;
 import at.droelf.droelfcast.feedparser.model.parsed.Channel;
 import at.droelf.droelfcast.feedparser.model.parsed.image.ImageBundle;
 import at.droelf.droelfcast.stuff.PresenterService;
@@ -30,6 +34,7 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.HandlerSchedulers;
 import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 public class FeedListView extends FrameLayout {
 
@@ -69,15 +74,23 @@ public class FeedListView extends FrameLayout {
         recyclerView.setItemAnimator(new SlideInUpAnimator());
     }
 
-    public void initList(Observable<Channel> channelObservable){
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(channelObservable);
+    public void initList(){
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter();
         recyclerView.setAdapter(recyclerAdapter);
     }
 
+    public Subscriber<FeedParserResponse> getSubscriber(){
+        if(recyclerView != null){
+            return ((RecyclerAdapter)recyclerView.getAdapter()).getSubscription();
+        }
+        return null;
+    }
 
     public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-        private final Observable<Channel> channelObservable;
         private final List<Channel> channelList;
+        private final CompositeSubscription subscriber;
+
+
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public TextView textView;
@@ -91,34 +104,44 @@ public class FeedListView extends FrameLayout {
         }
 
         // Provide a suitable constructor (depends on the kind of dataset)
-        public RecyclerAdapter(Observable<Channel> observable) {
-            this.channelObservable = observable;
+        public RecyclerAdapter() {
             this.channelList = new ArrayList<>();
-            subScribe();
+            this.subscriber = new CompositeSubscription();
         }
 
-        private void subScribe(){
-            channelObservable
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(HandlerSchedulers.mainThread())
-                    .subscribe(new Subscriber<Channel>() {
-                        @Override
-                        public void onCompleted() {
+        public Subscriber<FeedParserResponse> getSubscription(){
+            final Subscriber<FeedParserResponse> s = new Subscriber<FeedParserResponse>() {
+                @Override
+                public void onCompleted() {
 
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    Toast.makeText(getContext(), "Error: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onNext(FeedParserResponse feedParserResponse) {
+                    boolean f = false;
+                    for(Channel channel : channelList){
+                        if(channel.getChannelInfo().getTitle().equals(feedParserResponse.getChannel().getChannelInfo().getTitle())){
+                            f = true;
                         }
-
-                        @Override
-                        public void onError(Throwable e) {
-
-                        }
-
-                        @Override
-                        public void onNext(Channel channel) {
-                            RecyclerAdapter.this.channelList.add(channel);
-                            RecyclerAdapter.this.notifyItemInserted(channelList.size() - 1);
-                        }
-                    });
+                    }
+                    if(!f) {
+                        RecyclerAdapter.this.channelList.add(feedParserResponse.getChannel());
+                        RecyclerAdapter.this.notifyItemInserted(channelList.size() - 1);
+                    }
+                }
+            };
+            subscriber.add(s);
+            return s;
         }
+
+//        public Subscriber<FeedParserResponse> getSubscriber(){
+//            return subscriber;
+//        }
 
         // Create new views (invoked by the layout manager)
         @Override

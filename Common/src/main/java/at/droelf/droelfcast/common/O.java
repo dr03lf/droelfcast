@@ -1,6 +1,6 @@
 package at.droelf.droelfcast.common;
 
-public class O<T> {
+public class  O<T> {
     private T d;
 
     public O(T d){

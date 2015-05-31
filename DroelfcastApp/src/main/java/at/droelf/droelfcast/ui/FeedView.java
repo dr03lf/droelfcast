@@ -19,7 +19,6 @@ import javax.inject.Inject;
 
 import at.droelf.droelfcast.R;
 import at.droelf.droelfcast.feedparser.model.parsed.item.Item;
-import at.droelf.droelfcast.feedparser.model.raw.item.RawItem;
 import at.droelf.droelfcast.stuff.PresenterService;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
