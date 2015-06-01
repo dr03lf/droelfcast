@@ -89,4 +89,7 @@ ext {
     // disc lru
     discLru = 'com.jakewharton:disklrucache:2.0.2'
 
+    // palette
+    palette = 'com.android.support:palette-v7:22.2.0'
+
 }

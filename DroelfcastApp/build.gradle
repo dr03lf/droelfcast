@@ -41,6 +41,8 @@ dependencies {
     compile rootProject.ext.apacheio
 
     compile rootProject.ext.discLru
+
+    compile rootProject.ext.palette
 }
 
 

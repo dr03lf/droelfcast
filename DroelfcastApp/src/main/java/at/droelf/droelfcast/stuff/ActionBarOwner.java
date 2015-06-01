@@ -1,6 +1,7 @@
 package at.droelf.droelfcast.stuff;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import mortar.Presenter;
@@ -18,6 +19,8 @@ public class ActionBarOwner extends Presenter<ActionBarOwner.Activity> {
 
     void setMenu(MenuAction action);
 
+    void setColor(Drawable drawable);
+
     Context getContext();
   }
 
@@ -27,17 +30,23 @@ public class ActionBarOwner extends Presenter<ActionBarOwner.Activity> {
     public final CharSequence title;
     public final MenuAction action;
 
+  public final Drawable background;
+
     public Config(boolean showHomeEnabled, boolean upButtonEnabled, CharSequence title,
-        MenuAction action) {
+        MenuAction action, Drawable drawable) {
       this.showHomeEnabled = showHomeEnabled;
       this.upButtonEnabled = upButtonEnabled;
       this.title = title;
       this.action = action;
+        this.background= drawable;
     }
 
     public Config withAction(MenuAction action) {
-      return new Config(showHomeEnabled, upButtonEnabled, title, action);
+      return new Config(showHomeEnabled, upButtonEnabled, title, action, background);
     }
+      public Config withDrawable(Drawable drawable) {
+          return new Config(showHomeEnabled, upButtonEnabled, title, action, drawable);
+      }
   }
 
   public static class MenuAction {
@@ -80,6 +89,7 @@ public class ActionBarOwner extends Presenter<ActionBarOwner.Activity> {
     activity.setUpButtonEnabled(config.upButtonEnabled);
     activity.setTitle(config.title);
     activity.setMenu(config.action);
+      if(config.background != null) activity.setColor(config.background);
   }
 
 }

@@ -7,7 +7,6 @@ import com.google.gson.reflect.TypeToken;
 import com.jakewharton.disklrucache.DiskLruCache;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import at.droelf.droelfcast.common.Hash;
-import at.droelf.droelfcast.common.StringUtils;
 import at.droelf.droelfcast.feedparser.FeedParserResponse;
 import at.droelf.droelfcast.feedparser.model.parsed.Channel;
 import at.droelf.droelfcast.feedparser.model.parsed.ChannelInfo;
@@ -30,11 +28,11 @@ import timber.log.Timber;
 public class FeedStorage {
 
 
-    private static final int FILE_CHANNEL_INFO = 0; //"channelinfo";
-    private static final int FILE_LINKBUNDLE = 1; //"linkbundle";
-    private static final int FILE_IMAGEBUNDLE = 2; //"imagebundle";
-    private static final int FILE_ITEMS = 3;//"items";
-    private static final int FILE_URL = 4; //"url";
+    private static final int FILE_CHANNEL_INFO = 0;
+    private static final int FILE_LINKBUNDLE = 1;
+    private static final int FILE_IMAGEBUNDLE = 2;
+    private static final int FILE_ITEMS = 3;
+    private static final int FILE_URL = 4;
 
     private final static String META_FEED_LIST = "feedlist";
 
@@ -64,18 +62,15 @@ public class FeedStorage {
         return Observable.create(new Observable.OnSubscribe<FeedParserResponse>() {
             @Override
             public void call(Subscriber<? super FeedParserResponse> subscriber) {
-
-
                 try {
 
                     final Type listType = new TypeToken<List<String>>() {}.getType();
                     DiskLruCache.Snapshot snapshot1 = metaDataFeedCache.get(META_FEED_LIST);
-                    final List<String> feedList = new ArrayList<String>();
+                    final List<String> feedList = new ArrayList<>();
                     if(snapshot1 != null){
                         final List<String> feeds = gson.fromJson(snapshot1.getString(0), listType);
                         feedList.addAll(feeds);
                     }
-
 
                     for(String key : feedList){
 
@@ -128,7 +123,6 @@ public class FeedStorage {
                     if(feedList.contains(key)){
                         subscriber.onError(new RuntimeException("Already added"));
                     }
-
 
                     editor = feedCache.edit(key);
                     editor.set(FILE_CHANNEL_INFO, gson.toJson(channel.getChannelInfo()));

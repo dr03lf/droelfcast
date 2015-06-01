@@ -74,8 +74,4 @@ public class FeedService {
 
 
 
-    private File getCacheDir(){
-        return context.getCacheDir();
-    }
-
 }

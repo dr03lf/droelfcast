@@ -2,6 +2,7 @@ package at.droelf.droelfcast;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -156,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, 
         setTitle(path.getClass().getSimpleName());
         boolean canGoBack = traversal.destination.size() > 1;
         String title = path.getClass().getSimpleName();
-        actionBarOwner.setConfig(new ActionBarOwner.Config(false, canGoBack, title, null));
+        actionBarOwner.setConfig(new ActionBarOwner.Config(false, canGoBack, title, null, null));
 
         container.dispatch(traversal, callback);
     }
@@ -257,6 +258,13 @@ public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, 
         if (action != actionBarMenuAction) {
             actionBarMenuAction = action;
             invalidateOptionsMenu();
+        }
+    }
+
+    @Override
+    public void setColor(Drawable drawable) {
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setBackgroundDrawable(drawable);
         }
     }
 
