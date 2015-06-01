@@ -1,6 +1,7 @@
 package at.droelf.droelfcast.flow;
 
 import android.content.Context;
+import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewGroup;

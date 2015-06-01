@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, 
         setTitle(path.getClass().getSimpleName());
         boolean canGoBack = traversal.destination.size() > 1;
         String title = path.getClass().getSimpleName();
-        actionBarOwner.setConfig(new ActionBarOwner.Config(false, canGoBack, title, null, null));
+        actionBarOwner.setConfig(new ActionBarOwner.Config(0, false, canGoBack, title, null, null));
 
         container.dispatch(traversal, callback);
     }
@@ -265,6 +266,14 @@ public class MainActivity extends AppCompatActivity implements Flow.Dispatcher, 
     public void setColor(Drawable drawable) {
         if(getSupportActionBar() != null){
             getSupportActionBar().setBackgroundDrawable(drawable);
+        }
+    }
+
+    @Override
+    public void initToolBar(int id) {
+        if(id != 0){
+            final Toolbar toolbar = (Toolbar) findViewById(id);
+            setSupportActionBar(toolbar);
         }
     }
 

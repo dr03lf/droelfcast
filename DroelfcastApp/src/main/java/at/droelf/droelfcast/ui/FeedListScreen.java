@@ -1,5 +1,6 @@
 package at.droelf.droelfcast.ui;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import java.util.Arrays;
@@ -57,8 +58,7 @@ public class FeedListScreen extends Path {
                     .observeOn(HandlerSchedulers.mainThread())
                     .subscribe(view.getSubscriber());
 
-
-            actionBarOwner.setConfig(actionBarOwner.getConfig().withAction(new ActionBarOwner.MenuAction("add", new Runnable() {
+            ActionBarOwner.MenuAction add = new ActionBarOwner.MenuAction("add", new Runnable() {
                 @Override
                 public void run() {
                     Observable.from(urls).flatMap(new Func1<String, Observable<FeedParserResponse>>() {
@@ -66,11 +66,23 @@ public class FeedListScreen extends Path {
                         public Observable<FeedParserResponse> call(String s) {
                             return feedService.addFeed(s);
                         }
-                    })  .subscribeOn(Schedulers.newThread())
-                        .observeOn(HandlerSchedulers.mainThread())
-                        .subscribe(view.getSubscriber());
+                    }).subscribeOn(Schedulers.newThread())
+                            .observeOn(HandlerSchedulers.mainThread())
+                            .subscribe(view.getSubscriber());
                 }
-            })));
+            });
+
+//            ActionBarOwner.Config config = new ActionBarOwner.Config(R.id.feed_list_toolbar, false, false, "Feeds", add, null);
+//            if (config == null) {
+//                config =
+//            }
+
+            ActionBarOwner.Config config = actionBarOwner.getConfig()
+                    .withToolBarId(R.id.feed_list_toolbar)
+                    .withDrawable(new ColorDrawable(android.support.v7.appcompat.R.color.material_deep_teal_500))
+                    .withAction(add);
+
+            actionBarOwner.setConfig(config);
 
         }
 

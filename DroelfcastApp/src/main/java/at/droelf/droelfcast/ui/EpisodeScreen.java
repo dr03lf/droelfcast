@@ -35,7 +35,7 @@ public class EpisodeScreen extends Path{
         protected void onLoad(Bundle savedInstanceState) {
             super.onLoad(savedInstanceState);
 
-            actionBarOwner.setConfig(new ActionBarOwner.Config(true, true, item.getItemInfo().getTitle(), null, null));
+            //actionBarOwner.setConfig(new ActionBarOwner.Config(true, true, item.getItemInfo().getTitle(), null, null));
 
             getView().setText(item.getItemInfo().getContent());
         }

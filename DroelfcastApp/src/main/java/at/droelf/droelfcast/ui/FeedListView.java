@@ -36,10 +36,10 @@ import rx.android.schedulers.HandlerSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
-public class FeedListView extends FrameLayout {
+public class FeedListView extends RecyclerView {
 
-    @InjectView(R.id.feed_list)
-    RecyclerView recyclerView;
+//    @InjectView(R.id.feed_list)
+//    RecyclerView recyclerView;
 
     private final FeedListScreen.Presenter presenter;
 
@@ -70,18 +70,18 @@ public class FeedListView extends FrameLayout {
 
     private void initRecyclerView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setItemAnimator(new SlideInUpAnimator());
+        setLayoutManager(linearLayoutManager);
+        setItemAnimator(new SlideInUpAnimator());
     }
 
     public void initList(){
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter();
-        recyclerView.setAdapter(recyclerAdapter);
+        setAdapter(recyclerAdapter);
     }
 
     public Subscriber<FeedParserResponse> getSubscriber(){
-        if(recyclerView != null){
-            return ((RecyclerAdapter)recyclerView.getAdapter()).getSubscription();
+        if(getAdapter() != null){
+            return ((RecyclerAdapter)getAdapter()).getSubscription();
         }
         return null;
     }
