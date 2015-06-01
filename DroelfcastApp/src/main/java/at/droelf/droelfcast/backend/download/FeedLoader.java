@@ -5,8 +5,8 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import at.droelf.droelfcast.backend.model.FeedResponse;
 import at.droelf.droelfcast.backend.storage.RawFeedCache;
@@ -25,7 +25,12 @@ public class FeedLoader {
         this.rawFeedCache = rawFeedCache;
     }
 
-    public Observable<FeedResponse> loadFeed(final String baseDir, final String url) {
+    public InputStream getCachedRawfeed(String key) throws IOException {
+        return rawFeedCache.getCachedRawfeed(key);
+    }
+
+
+    public Observable<FeedResponse> loadAndCacheRawFeed(final String url) {
 
         return Observable.create(new Observable.OnSubscribe<Response>() {
             @Override
@@ -55,18 +60,12 @@ public class FeedLoader {
                     subscriber.onError(e);
 
                 }
-                }
             }
-
-            ).
-
-            flatMap(new Func1<Response, Observable<FeedResponse>>() {
+            }).flatMap(new Func1<Response, Observable<FeedResponse>>() {
                 @Override
                 public Observable<FeedResponse> call (Response response){
-                    return rawFeedCache.cacheDownloadedFeed(baseDir, url, response);
+                    return rawFeedCache.cacheDownloadedFeed(url, response);
                 }
-            }
-
-            );
+            });
         }
     }

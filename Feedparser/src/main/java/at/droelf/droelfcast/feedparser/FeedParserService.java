@@ -42,7 +42,7 @@ public class FeedParserService {
         build.inject(this);
     }
 
-    public Observable<FeedParserResponse> parseFeed(final String url, final File file) {
+    public Observable<FeedParserResponse> parseFeed(final String url, final InputStream file) {
         return Observable.create(new Observable.OnSubscribe<FeedParserResponse>() {
             @Override
             public void call(Subscriber<? super FeedParserResponse> subscriber) {

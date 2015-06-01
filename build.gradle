@@ -86,4 +86,7 @@ ext {
     // jackson
     jackson = 'com.fasterxml.jackson.core:jackson-databind:2.4.4'
 
+    // disc lru
+    discLru = 'com.jakewharton:disklrucache:2.0.2'
+
 }

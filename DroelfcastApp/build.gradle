@@ -39,6 +39,8 @@ dependencies {
     compile rootProject.ext.okhttp
 
     compile rootProject.ext.apacheio
+
+    compile rootProject.ext.discLru
 }
 
 
