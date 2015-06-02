@@ -53,26 +53,30 @@ public class FeedScreen extends Path {
             final FeedView view = getView();
             view.setFeedList(channel.getItems());
 
+            actionBarOwner.setConfig(actionBarOwner.getConfig().withToolBarId(R.id.feed_toolbar));
 
             O<ImageItunes> imageItunes = channel.getImageBundle().getImageItunes();
             if(!imageItunes.e()){
 
                 final String href = imageItunes.d().getHref();
-                ImageLoader.getInstance().loadImage(href, new SimpleImageLoadingListener() {
-                    @Override
-                    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                        super.onLoadingComplete(imageUri, view, loadedImage);
-                        Palette.from(loadedImage).generate(new Palette.PaletteAsyncListener() {
-                            @Override
-                            public void onGenerated(Palette palette) {
-                                ActionBarOwner.Config config = actionBarOwner.getConfig().withDrawable(new ColorDrawable(palette.getMutedColor(Color.BLACK)));
-                                actionBarOwner.setConfig(config);
-                            }
-                        });
+                view.setBackDrop(href);
 
-
-                    }
-                });
+//
+//                ImageLoader.getInstance().loadImage(href, new SimpleImageLoadingListener() {
+//                    @Override
+//                    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+//                        super.onLoadingComplete(imageUri, view, loadedImage);
+//                        Palette.from(loadedImage).generate(new Palette.PaletteAsyncListener() {
+//                            @Override
+//                            public void onGenerated(Palette palette) {
+//                                ActionBarOwner.Config config = actionBarOwner.getConfig().withDrawable(new ColorDrawable(palette.getMutedColor(Color.BLACK)));
+//                                actionBarOwner.setConfig(config);
+//                            }
+//                        });
+//
+//
+//                    }
+//                });
 
             }
 

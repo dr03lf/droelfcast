@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,10 +37,10 @@ import rx.android.schedulers.HandlerSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
-public class FeedListView extends RecyclerView {
+public class FeedListView extends LinearLayout {
 
-//    @InjectView(R.id.feed_list)
-//    RecyclerView recyclerView;
+    @InjectView(R.id.feed_list)
+    RecyclerView recyclerView;
 
     private final FeedListScreen.Presenter presenter;
 
@@ -70,18 +71,18 @@ public class FeedListView extends RecyclerView {
 
     private void initRecyclerView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        setLayoutManager(linearLayoutManager);
-        setItemAnimator(new SlideInUpAnimator());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setItemAnimator(new SlideInUpAnimator());
     }
 
     public void initList(){
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter();
-        setAdapter(recyclerAdapter);
+        recyclerView.setAdapter(recyclerAdapter);
     }
 
     public Subscriber<FeedParserResponse> getSubscriber(){
-        if(getAdapter() != null){
-            return ((RecyclerAdapter)getAdapter()).getSubscription();
+        if(recyclerView.getAdapter() != null){
+            return ((RecyclerAdapter)recyclerView.getAdapter()).getSubscription();
         }
         return null;
     }
